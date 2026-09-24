@@ -1,0 +1,10 @@
+{
+  "name": "@likecord/config-typescript",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    "./base": "./tsconfig.base.json",
+    "./nextjs": "./tsconfig.nextjs.json",
+    "./nestjs": "./tsconfig.nestjs.json"
+  }
+}

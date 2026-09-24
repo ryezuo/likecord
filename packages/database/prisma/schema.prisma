@@ -1,0 +1,367 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x", "debian-openssl-1.1.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---- Extensions ----
+// Note: citext extension must be created manually or via migration
+// gen_random_uuid() comes from pgcrypto extension
+
+model User {
+  id                     String    @id @default(uuid()) @db.Uuid
+  email                  String    @unique
+  username               String    @unique @db.VarChar(32)
+  displayName            String    @db.VarChar(64)
+  passwordHash           String
+  passwordChangeRequired Boolean   @default(false)
+  avatarUrl              String?
+  bio                    String?
+  createdAt              DateTime  @default(now()) @db.Timestamptz
+  updatedAt              DateTime  @updatedAt @db.Timestamptz
+  lastSeenAt             DateTime? @db.Timestamptz
+
+  ownedServers        Server[]                 @relation("ServerOwner")
+  members             Member[]
+  messages            Message[]
+  refreshSessions     RefreshSession[]
+  auditLogs           AuditLog[]
+  createdInvites      Invite[]                 @relation("InviteCreator")
+  notifications       Notification[]
+  preference          UserPreference?
+  serverPreferences   UserServerPreference[]
+  voiceMixPreferences UserVoiceMixPreference[] @relation("VoiceMixListener")
+  voiceMixListeners   UserVoiceMixPreference[] @relation("VoiceMixTarget")
+
+  @@map("users")
+}
+
+enum NativeCaptureIntent {
+  AUTO
+  OFF
+  ON
+}
+
+enum NoiseSuppressionMode {
+  BROWSER
+  OFF
+  RNNOISE
+}
+
+enum EchoCancellationIntent {
+  AUTO
+  OFF
+  ON
+  ALL
+  REMOTE_ONLY
+}
+
+model UserPreference {
+  noiseSuppressionMode         NoiseSuppressionMode   @default(BROWSER)
+  userId                       String                 @id @db.Uuid
+  showSendButton               Boolean                @default(false)
+  theme                        String                 @default("LIKECORD_DEFAULT") @db.VarChar(32)
+  soundEffectsEnabled          Boolean?
+  soundEffectsVolume           Int                    @default(70)
+  callAndStreamVolume          Int                    @default(100)
+  inputGainPercent             Int                    @default(100)
+  voiceActivationEnabled       Boolean                @default(false)
+  voiceActivationThresholdDbfs Int                    @default(-50)
+  echoCancellationIntent       EchoCancellationIntent @default(AUTO)
+  noiseSuppressionIntent       NativeCaptureIntent    @default(AUTO)
+  autoGainControlIntent        NativeCaptureIntent    @default(AUTO)
+  voiceIsolationIntent         NativeCaptureIntent    @default(AUTO)
+  updatedAt                    DateTime               @updatedAt @db.Timestamptz
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_preferences")
+}
+
+model Server {
+  id          String   @id @default(uuid()) @db.Uuid
+  name        String   @db.VarChar(100)
+  ownerId     String   @db.Uuid
+  iconUrl     String?
+  description String?
+  createdAt   DateTime @default(now()) @db.Timestamptz
+  updatedAt   DateTime @updatedAt @db.Timestamptz
+
+  owner           User                   @relation("ServerOwner", fields: [ownerId], references: [id])
+  channels        Channel[]
+  categories      ChannelCategory[]
+  members         Member[]
+  roles           Role[]
+  invites         Invite[]
+  auditLogs       AuditLog[]
+  userPreferences UserServerPreference[]
+
+  @@map("servers")
+}
+
+model ChannelCategory {
+  id        String   @id @default(uuid()) @db.Uuid
+  serverId  String   @db.Uuid
+  name      String   @db.VarChar(100)
+  position  Int      @default(0)
+  createdAt DateTime @default(now()) @db.Timestamptz
+
+  server               Server                        @relation(fields: [serverId], references: [id], onDelete: Cascade)
+  channels             Channel[]
+  permissionOverwrites CategoryPermissionOverwrite[]
+
+  @@map("channel_categories")
+}
+
+model Channel {
+  id                String   @id @default(uuid()) @db.Uuid
+  serverId          String   @db.Uuid
+  categoryId        String?  @db.Uuid
+  permissionsSynced Boolean  @default(false)
+  type              String   @db.VarChar(10) // TEXT or VOICE
+  name              String   @db.VarChar(100)
+  position          Int      @default(0)
+  topic             String?
+  createdAt         DateTime @default(now()) @db.Timestamptz
+
+  server                     Server                       @relation(fields: [serverId], references: [id], onDelete: Cascade)
+  category                   ChannelCategory?             @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  messages                   Message[]
+  permissionOverwrites       ChannelPermissionOverwrite[]
+  lastTextChannelPreferences UserServerPreference[]       @relation("LastTextChannelPreference")
+
+  @@unique([serverId, name])
+  @@map("channels")
+}
+
+model UserServerPreference {
+  userId            String   @db.Uuid
+  serverId          String   @db.Uuid
+  lastTextChannelId String?  @db.Uuid
+  updatedAt         DateTime @updatedAt @db.Timestamptz
+
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  server          Server   @relation(fields: [serverId], references: [id], onDelete: Cascade)
+  lastTextChannel Channel? @relation("LastTextChannelPreference", fields: [lastTextChannelId], references: [id], onDelete: SetNull)
+
+  @@id([userId, serverId])
+  @@index([serverId])
+  @@index([lastTextChannelId])
+  @@map("user_server_preferences")
+}
+
+model UserVoiceMixPreference {
+  listenerUserId String   @db.Uuid
+  targetUserId   String   @db.Uuid
+  volumePercent  Int      @default(100)
+  muted          Boolean  @default(false)
+  updatedAt      DateTime @updatedAt @db.Timestamptz
+
+  listener User @relation("VoiceMixListener", fields: [listenerUserId], references: [id], onDelete: Cascade)
+  target   User @relation("VoiceMixTarget", fields: [targetUserId], references: [id], onDelete: Cascade)
+
+  // PostgreSQL range and non-self CHECK constraints live in the migration.
+  @@id([listenerUserId, targetUserId])
+  @@index([targetUserId])
+  @@map("user_voice_mix_preferences")
+}
+
+model Member {
+  id         String    @id @default(uuid()) @db.Uuid
+  serverId   String    @db.Uuid
+  userId     String    @db.Uuid
+  nickname   String?   @db.VarChar(64)
+  joinedAt   DateTime  @default(now()) @db.Timestamptz
+  isBanned   Boolean   @default(false)
+  isMuted    Boolean   @default(false)
+  mutedUntil DateTime? @db.Timestamptz
+
+  server                       Server                        @relation(fields: [serverId], references: [id], onDelete: Cascade)
+  user                         User                          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  roles                        MemberRole[]
+  permissionOverwrites         ChannelPermissionOverwrite[]
+  categoryPermissionOverwrites CategoryPermissionOverwrite[]
+
+  @@unique([serverId, userId])
+  @@index([userId])
+  @@map("members")
+}
+
+model Role {
+  id            String   @id @default(uuid()) @db.Uuid
+  serverId      String   @db.Uuid
+  name          String   @db.VarChar(100)
+  color         Int      @default(0)
+  position      Int      @default(0)
+  permissions   BigInt   @default(0)
+  isDefault     Boolean  @default(false)
+  isMentionable Boolean  @default(false)
+  isHoisted     Boolean  @default(false)
+  createdAt     DateTime @default(now()) @db.Timestamptz
+
+  server                       Server                        @relation(fields: [serverId], references: [id], onDelete: Cascade)
+  members                      MemberRole[]
+  permissionOverwrites         ChannelPermissionOverwrite[]
+  categoryPermissionOverwrites CategoryPermissionOverwrite[]
+
+  @@unique([serverId, name])
+  @@index([serverId, position(sort: Desc)])
+  @@map("roles")
+}
+
+model MemberRole {
+  memberId String @db.Uuid
+  roleId   String @db.Uuid
+
+  member Member @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  role   Role   @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@id([memberId, roleId])
+  @@index([roleId])
+  @@map("member_roles")
+}
+
+model Message {
+  id             String    @id @default(uuid()) @db.Uuid
+  channelId      String    @db.Uuid
+  authorId       String    @db.Uuid
+  content        String
+  idempotencyKey String?   @db.VarChar(64)
+  editedAt       DateTime? @db.Timestamptz
+  deletedAt      DateTime? @db.Timestamptz
+  createdAt      DateTime  @default(now()) @db.Timestamptz
+
+  channel     Channel      @relation(fields: [channelId], references: [id], onDelete: Cascade)
+  author      User         @relation(fields: [authorId], references: [id])
+  attachments Attachment[]
+
+  @@unique([channelId, idempotencyKey])
+  @@index([channelId, createdAt(sort: Desc)])
+  @@index([authorId])
+  @@map("messages")
+}
+
+model Attachment {
+  id        String   @id @default(uuid()) @db.Uuid
+  messageId String?  @db.Uuid
+  fileName  String   @db.VarChar(255)
+  fileSize  Int
+  mimeType  String   @db.VarChar(127)
+  s3Key     String
+  createdAt DateTime @default(now()) @db.Timestamptz
+  processed Boolean  @default(false)
+
+  message Message? @relation(fields: [messageId], references: [id], onDelete: SetNull)
+
+  @@map("attachments")
+}
+
+model Invite {
+  id        String    @id @default(uuid()) @db.Uuid
+  code      String    @unique @db.VarChar(16)
+  serverId  String    @db.Uuid
+  creatorId String    @db.Uuid
+  maxUses   Int?
+  expiresAt DateTime? @db.Timestamptz
+  useCount  Int       @default(0)
+  isRevoked Boolean   @default(false)
+  createdAt DateTime  @default(now()) @db.Timestamptz
+
+  server  Server @relation(fields: [serverId], references: [id], onDelete: Cascade)
+  creator User   @relation("InviteCreator", fields: [creatorId], references: [id])
+
+  @@index([code])
+  @@index([serverId])
+  @@map("invites")
+}
+
+model RefreshSession {
+  id            String    @id @default(uuid()) @db.Uuid
+  userId        String    @db.Uuid
+  tokenHash     String    @unique @db.VarChar(255)
+  accessVersion Int       @default(1)
+  userAgent     String?
+  ipAddress     String? // Stored as string; INET type handled at DB level via raw query
+  createdAt     DateTime  @default(now()) @db.Timestamptz
+  expiresAt     DateTime  @db.Timestamptz
+  revokedAt     DateTime? @db.Timestamptz
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([tokenHash])
+  @@map("refresh_sessions")
+}
+
+model AuditLog {
+  id        String   @id @default(uuid()) @db.Uuid
+  serverId  String?  @db.Uuid
+  actorId   String   @db.Uuid
+  action    String   @db.VarChar(32)
+  targetId  String?  @db.Uuid
+  details   Json?
+  createdAt DateTime @default(now()) @db.Timestamptz
+
+  server Server? @relation(fields: [serverId], references: [id], onDelete: SetNull)
+  actor  User    @relation(fields: [actorId], references: [id])
+
+  @@index([serverId, createdAt(sort: Desc)])
+  @@index([actorId])
+  @@map("audit_logs")
+}
+
+model Notification {
+  id             String   @id @default(uuid()) @db.Uuid
+  userId         String   @db.Uuid
+  type           String   @db.VarChar(32)
+  referenceType  String   @db.VarChar(32)
+  referenceId    String   @db.Uuid
+  contentPreview String?
+  isRead         Boolean  @default(false)
+  createdAt      DateTime @default(now()) @db.Timestamptz
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, isRead, createdAt(sort: Desc)])
+  @@map("notifications")
+}
+
+model ChannelPermissionOverwrite {
+  id        String  @id @default(uuid()) @db.Uuid
+  channelId String  @db.Uuid
+  roleId    String? @db.Uuid
+  memberId  String? @db.Uuid
+  allow     BigInt  @default(0)
+  deny      BigInt  @default(0)
+
+  channel Channel @relation(fields: [channelId], references: [id], onDelete: Cascade)
+  role    Role?   @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  member  Member? @relation(fields: [memberId], references: [id], onDelete: Cascade)
+
+  @@unique([channelId, roleId])
+  @@unique([channelId, memberId])
+  @@index([channelId])
+  @@map("channel_permission_overwrites")
+}
+
+model CategoryPermissionOverwrite {
+  id         String  @id @default(uuid()) @db.Uuid
+  categoryId String  @db.Uuid
+  roleId     String? @db.Uuid
+  memberId   String? @db.Uuid
+  allow      BigInt  @default(0)
+  deny       BigInt  @default(0)
+
+  category ChannelCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  role     Role?           @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  member   Member?         @relation(fields: [memberId], references: [id], onDelete: Cascade)
+
+  @@unique([categoryId, roleId])
+  @@unique([categoryId, memberId])
+  @@index([categoryId])
+  @@map("category_permission_overwrites")
+}

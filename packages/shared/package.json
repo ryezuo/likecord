@@ -1,0 +1,47 @@
+{
+  "name": "@likecord/shared",
+  "version": "0.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./capture-preferences": {
+      "types": "./capture-preferences.d.ts",
+      "default": "./capture-preferences.js"
+    },
+    "./link-preview-url": {
+      "types": "./link-preview-url.d.ts",
+      "default": "./link-preview-url.js"
+    },
+    "./link-preview": {
+      "types": "./link-preview.d.ts",
+      "default": "./link-preview.js"
+    },
+    "./avatar-animation": {
+      "types": "./avatar-animation.d.ts",
+      "default": "./avatar-animation.js"
+    },
+    "./avatar-crop": {
+      "types": "./avatar-crop.d.ts",
+      "default": "./avatar-crop.js"
+    },
+    "./theme": {
+      "types": "./theme.d.ts",
+      "default": "./theme.js"
+    },
+    "./src/avatar-animation": "./src/avatar-animation.ts",
+    "./src/avatar-animation.ts": "./src/avatar-animation.ts",
+    "./src/avatar-crop.ts": "./src/avatar-crop.ts"
+  },
+  "scripts": {
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf .turbo"
+  },
+  "devDependencies": {
+    "@likecord/config-eslint": "workspace:*",
+    "@likecord/config-typescript": "workspace:*",
+    "typescript": "^5.4.0"
+  }
+}

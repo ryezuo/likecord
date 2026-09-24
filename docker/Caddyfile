@@ -1,0 +1,23 @@
+# Local development Caddy configuration
+# Canonical URL: https://localhost
+# TLS is internal (self-signed) — browser will show a warning, which is safe to bypass
+https://localhost {
+    tls internal
+
+    # WebSocket endpoint — explicit route for Socket.IO path
+    @ws {
+        path /api/v1/ws*
+    }
+    reverse_proxy @ws api:3001
+
+    # REST API
+    reverse_proxy /api/v1/* api:3001
+
+    # Frontend
+    reverse_proxy /* web:3000
+}
+
+# HTTP redirects to HTTPS for convenience
+http://localhost {
+    redir https://localhost{uri} permanent
+}

@@ -1,0 +1,31 @@
+{
+  "name": "likecord",
+  "private": true,
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "format": "turbo format",
+    "typecheck": "turbo typecheck",
+    "clean": "turbo clean",
+    "db:generate": "pnpm --filter @likecord/database db:generate",
+    "db:migrate": "pnpm --filter @likecord/database db:migrate",
+    "db:push": "pnpm --filter @likecord/database db:push",
+    "db:studio": "pnpm --filter @likecord/database db:studio"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0",
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=24.20.0 <25",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@9.15.4",
+  "pnpm": {
+    "overrides": {
+      "@nestjs/platform-socket.io@10>socket.io": "4.8.3",
+      "socket.io-parser": "4.2.7"
+    }
+  }
+}

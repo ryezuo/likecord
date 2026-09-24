@@ -1,0 +1,10 @@
+import { readFile } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+process.chdir(fileURLToPath(new URL('..',import.meta.url)));
+const pid=Number(await readFile('.cache/server.pid','utf8'));
+const response=await fetch('http://127.0.0.1:4317/artifact-inspection.json');
+if(!response.ok||Number(response.headers.get('x-voice-spike-pid'))!==pid||!Number.isInteger(pid)||pid<1)throw Error('Dedicated spike server identity not verified; nothing stopped');
+const artifact=await response.json();
+if(artifact.package!=='@jitsi/rnnoise-wasm@0.2.1')throw Error('Unexpected server; nothing stopped');
+process.kill(pid,'SIGTERM');
+console.log('Dedicated local spike server stopped. Use Parar in the page to release any active media.');

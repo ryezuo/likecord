@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "package": "@jitsi/rnnoise-wasm@0.2.1",
+  "wrapperCommit": "cb529a59a8478fe604e57986fc96afdaecfa6fb7",
+  "engineCommit": "372f7b4b76cde4ca1ec4605353dd17898a99de38",
+  "modelId": "0b50c45",
+  "packageTarballSha256": "c80b015b69701699868086a30015e5e680bee41a68df4c8ad2daed8b1bbc1173",
+  "embeddedWasmSha256": "4f513a50613de74378331237886138eab52fa2650e8b1a41eb587d932d9b8850",
+  "modelArchiveSha256": "4ac81c5c0884ec4bd5907026aaae16209b7b76cd9d7f71af582094a2f98f4b43",
+  "engineSourceArchiveSha256": "40ff1568af151959933699fcbf2db3ee3c62fa9559557dbf61a65e7a12cd335d",
+  "inputHashes": {
+    "syncGlue": "05a553f523d59502d133a6d05dbf1878137c9e7bcff06edf5561f7001b62f95f",
+    "thirdPartyNotices": "bc83e8ce773e39bcfc382e1e20c4b6d2c8e959ef1c01b0d7f955d73716089d74"
+  },
+  "files": {
+    "rnnoise-sync.js": {
+      "bytes": 1933102,
+      "sha256": "05a553f523d59502d133a6d05dbf1878137c9e7bcff06edf5561f7001b62f95f"
+    },
+    "THIRD_PARTY_NOTICES.txt": {
+      "bytes": 24041,
+      "sha256": "80c651caad28b2cb67ac8da58967d1199eab88fe9b22520bf2748a93e31aa1cd"
+    },
+    "engine.mjs": {
+      "bytes": 1670,
+      "sha256": "25573f9caf9d4f085e77338340602542ef03d1cb6c62b8bf232900303c1b0e79"
+    },
+    "fixed-dsp.mjs": {
+      "bytes": 5127,
+      "sha256": "2a80f0bc5a11b620206b1cc570435072ed0d1a44fb46e52ca9088d042872812a"
+    },
+    "capture.mjs": {
+      "bytes": 4569,
+      "sha256": "3476e8c312d75384c5077acb5878ccad8a843a18d49e6e2f278bc1f30835fcd5"
+    }
+  },
+  "model": "Compiled default model embedded in synchronous glue; no external WASM/model request.",
+  "notices": "THIRD_PARTY_NOTICES.txt",
+  "licenses": [
+    "Apache-2.0 wrapper with retained MIT notice",
+    "Xiph source BSD notices"
+  ],
+  "recipe": "From repository root: pnpm --dir tools/spikes/voice-audio run package:va3b:rnnoise. Copies exact pinned sync glue without transformation; only replaces the diagnostic heading of previously verified notices. Refuses to overwrite existing artifacts. Production builds serve committed public files without loading spike code or dependencies. Then run finalize:va3b:rnnoise to preserve the initial manifest and record production processor/engine/fixed-DSP hashes. Production source is committed and packaged unchanged; no spike dependency is shipped.",
+  "lifetime": "V1: lazy account AudioContext/registration; processor, Emscripten/WASM instance and signal state per active generation",
+  "security": {
+    "cdn": false,
+    "externalModel": false,
+    "jitsiSDK": false,
+    "unsafeEval": false,
+    "coopCoepChange": false
+  },
+  "productionProcessor": "capture.mjs",
+  "fixedDspCandidateSha256": "4e683fa39c539d8c32e12701b5218354c368f7c4c4383929a1ec05f0d8e542de",
+  "fixedDspEquivalence": "Exact measured algorithm body, with only header and engine import relocated. Verified by production RNNoise DSP test."
+}

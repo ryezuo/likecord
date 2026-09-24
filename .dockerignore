@@ -1,0 +1,22 @@
+node_modules
+.next
+dist
+.turbo
+.git
+backups
+secrets
+.env
+.env.local
+.env.*
+cookies.txt
+*.log
+.pnpm-store
+docker-compose.yml
+README.md
+docs
+
+# Isolated Voice research outputs are never production build inputs.
+tools/spikes/voice-audio/results/
+tools/spikes/voice-audio/.cache/
+tools/spikes/voice-audio/dist/
+tools/spikes/voice-audio/node_modules/

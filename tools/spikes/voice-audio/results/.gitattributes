@@ -1,0 +1,2 @@
+# Preserve recorded evidence bytes and the SHA-256 inventories across checkout.
+va3b-* -text

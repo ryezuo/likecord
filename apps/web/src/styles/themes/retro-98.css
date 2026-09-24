@@ -1,0 +1,375 @@
+/* Retro 98 is a presentation skin for the existing protected Likecord app. */
+[data-theme="likecord-retro-98"] {
+  color-scheme: light;
+
+  --bg-base: #008080;
+  --bg-primary: #C0C0C0;
+  --bg-secondary: #D6D6D6;
+  --bg-tertiary: #FFFFFF;
+  --bg-elevated: #DFDFDF;
+  --bg-hover: #E9E9E9;
+  --bg-active: #B8CFE8;
+  --bg-media: #000000;
+  --bg-overlay: rgba(0, 0, 0, 0.56);
+
+  --bg-app: var(--bg-base);
+  --bg-rail: var(--bg-primary);
+  --bg-sidebar: var(--bg-secondary);
+  --bg-chat: var(--bg-tertiary);
+  --bg-panel: var(--bg-secondary);
+  --bg-surface: var(--bg-tertiary);
+
+  --brand-primary: #000080;
+  --brand-primary-hover: #1084D0;
+  --accent: var(--brand-primary);
+  --accent-hover: var(--brand-primary-hover);
+
+  --text-primary: #000000;
+  --text-secondary: #242424;
+  --text-muted: #4A4A4A;
+  --text-disabled: #595959;
+  --text-link: #0000EE;
+  --text-on-brand: #FFFFFF;
+  --text-on-danger: #FFFFFF;
+  --text-on-semantic: #000000;
+
+  --success: #00652A;
+  --warning: #765000;
+  --danger: #A20D1A;
+  --danger-solid: #A20D1A;
+  --danger-solid-hover: #7D0812;
+  --info: #004B9B;
+  --bg-success-subtle: color-mix(in srgb, var(--success) 14%, var(--bg-tertiary));
+  --bg-warning-subtle: color-mix(in srgb, var(--warning) 14%, var(--bg-tertiary));
+  --bg-danger-subtle: color-mix(in srgb, var(--danger) 14%, var(--bg-tertiary));
+  --bg-info-subtle: color-mix(in srgb, var(--info) 14%, var(--bg-tertiary));
+
+  --border-subtle: #A0A0A0;
+  --border-default: #808080;
+  --border-highlight: #000080;
+  --border-control: #000000;
+  --border: var(--border-default);
+  --scrollbar-thumb: #C0C0C0;
+  --scrollbar-thumb-hover: #D6D6D6;
+
+  --shadow-low: none;
+  --shadow-elevated: none;
+  --focus-ring: #000080;
+  --focus-gap: #FFFFFF;
+
+  --font: "MS Sans Serif", Tahoma, Verdana, Arial, sans-serif;
+  --brand-in-product-mark: url("/themes/retro-98/assets/brand/mark.svg");
+
+  --theme-chrome-bevel-highlight: #FFFFFF;
+  --theme-chrome-bevel-shadow: #808080;
+  --theme-chrome-bevel-dark: #000000;
+  --theme-chrome-titlebar-start: #000080;
+  --theme-chrome-titlebar-end: #1084D0;
+  --theme-control-radius: 0px;
+}
+
+/* The teal desktop remains visible as the app frame, while panes stay readable. */
+[data-theme="likecord-retro-98"] .app-layout {
+  gap: 6px;
+  padding: 10px;
+  background: var(--bg-app);
+}
+
+[data-theme="likecord-retro-98"] .main-content {
+  background: var(--bg-secondary);
+}
+
+[data-theme="likecord-retro-98"] .message-list {
+  background: var(--bg-secondary);
+}
+
+[data-theme="likecord-retro-98"] :is(.app-navigation, .app-workspace) {
+  border: 1px solid var(--theme-chrome-bevel-dark);
+  box-shadow:
+    inset 1px 1px var(--theme-chrome-bevel-highlight),
+    inset -1px -1px var(--theme-chrome-bevel-shadow);
+}
+
+/* Existing shell headers are the only surfaces using the classic title strip. */
+[data-theme="likecord-retro-98"] :is(.channel-header, .app-shell-header) {
+  border-bottom-color: var(--theme-chrome-bevel-dark);
+  background: linear-gradient(90deg, var(--theme-chrome-titlebar-start), var(--theme-chrome-titlebar-end));
+  color: #FFFFFF;
+  box-shadow: none;
+}
+
+[data-theme="likecord-retro-98"] :is(.channel-header, .app-shell-header) :is(button, .channel-chevron, .app-shell-member-control) {
+  color: #FFFFFF;
+}
+
+[data-theme="likecord-retro-98"] .app-shell-member-control {
+  border-left-color: rgba(255, 255, 255, 0.72);
+}
+
+[data-theme="likecord-retro-98"] .app-shell-header-actions {
+  margin-right: 8px;
+}
+
+/* Raised controls share one restrained bevel; state cues remain semantic. */
+[data-theme="likecord-retro-98"] :is(
+  .btn,
+  .sm-btn,
+  .danger-button,
+  .settings-content button,
+  .modal button,
+  .user-panel-btn,
+  .screen-share-icon-button,
+  .screen-share-leave-button,
+  .live-stream-action
+) {
+  border: 1px solid var(--theme-chrome-bevel-dark);
+  border-radius: var(--theme-control-radius);
+  box-shadow:
+    inset 1px 1px var(--theme-chrome-bevel-highlight),
+    inset -1px -1px var(--theme-chrome-bevel-shadow);
+}
+
+[data-theme="likecord-retro-98"] :is(
+  .btn,
+  .sm-btn,
+  .danger-button,
+  .settings-content button,
+  .modal button,
+  .user-panel-btn,
+  .screen-share-icon-button,
+  .screen-share-leave-button,
+  .live-stream-action
+):active:not(:disabled) {
+  box-shadow:
+    inset 1px 1px var(--theme-chrome-bevel-shadow),
+    inset -1px -1px var(--theme-chrome-bevel-highlight);
+}
+
+[data-theme="likecord-retro-98"] :is(.btn.btn-primary, .btn.btn-danger, .danger-button, .sm-btn.danger, .live-stream-action) {
+  border-color: var(--theme-chrome-bevel-dark);
+}
+
+/* Native fields and the composer use a compact sunken treatment. */
+[data-theme="likecord-retro-98"] :is(
+  .form-control,
+  .settings-content input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="hidden"]),
+  .settings-content textarea,
+  .settings-content select,
+  .modal input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="hidden"]),
+  .modal textarea,
+  .modal select,
+  .composer-inner
+) {
+  border: 1px solid var(--theme-chrome-bevel-dark);
+  border-radius: var(--theme-control-radius);
+  box-shadow:
+    inset 1px 1px var(--theme-chrome-bevel-shadow),
+    inset -1px -1px var(--theme-chrome-bevel-highlight);
+}
+
+[data-theme="likecord-retro-98"] .composer-inner {
+  background: var(--bg-tertiary);
+}
+
+[data-theme="likecord-retro-98"] :is(.modal, .context-menu, .tooltip-content, .screen-share-detached-card, .screen-share-presenter-card, .screen-share-viewer-list) {
+  border: 1px solid var(--theme-chrome-bevel-dark);
+  border-radius: var(--theme-control-radius);
+  background: var(--bg-elevated);
+  box-shadow:
+    inset 1px 1px var(--theme-chrome-bevel-highlight),
+    inset -1px -1px var(--theme-chrome-bevel-shadow);
+}
+
+[data-theme="likecord-retro-98"] .media-viewer-dialog {
+  border: 1px solid var(--theme-chrome-bevel-dark);
+  border-radius: var(--theme-control-radius);
+  background: var(--bg-elevated);
+  box-shadow:
+    inset 1px 1px var(--theme-chrome-bevel-highlight),
+    inset -1px -1px var(--theme-chrome-bevel-shadow);
+}
+
+[data-theme="likecord-retro-98"] .media-viewer-header {
+  margin: 2px 2px 0;
+  border-bottom: 0;
+  background: linear-gradient(90deg, var(--theme-chrome-titlebar-start), var(--theme-chrome-titlebar-end));
+  color: #FFFFFF;
+}
+
+[data-theme="likecord-retro-98"] .media-viewer-header :is(.media-viewer-position, .media-viewer-close) { color: #FFFFFF; }
+
+[data-theme="likecord-retro-98"] .media-viewer-dialog .btn {
+  border: 1px solid var(--theme-chrome-bevel-dark);
+  border-radius: var(--theme-control-radius);
+  box-shadow:
+    inset 1px 1px var(--theme-chrome-bevel-highlight),
+    inset -1px -1px var(--theme-chrome-bevel-shadow);
+}
+
+[data-theme="likecord-retro-98"] .media-viewer-dialog .btn:active:not(:disabled) {
+  box-shadow:
+    inset 1px 1px var(--theme-chrome-bevel-shadow),
+    inset -1px -1px var(--theme-chrome-bevel-highlight);
+}
+
+[data-theme="likecord-retro-98"] .media-viewer-zoom-level {
+  padding: var(--space-1);
+  border: 1px solid var(--theme-chrome-bevel-dark);
+  background: var(--bg-tertiary);
+  box-shadow:
+    inset 1px 1px var(--theme-chrome-bevel-shadow),
+    inset -1px -1px var(--theme-chrome-bevel-highlight);
+}
+
+[data-theme="likecord-retro-98"] .tooltip-content {
+  background: #FFFFE1;
+  color: #000000;
+}
+
+/* Navigation keeps the existing information architecture and state signals. */
+[data-theme="likecord-retro-98"] :is(.server-rail-icon, .channel-item, .voice-channel-btn, .settings-nav-item) {
+  border-radius: var(--theme-control-radius);
+}
+
+[data-theme="likecord-retro-98"] .server-rail-icon {
+  border-color: var(--theme-chrome-bevel-dark);
+  box-shadow:
+    inset 1px 1px var(--theme-chrome-bevel-highlight),
+    inset -1px -1px var(--theme-chrome-bevel-shadow);
+}
+
+[data-theme="likecord-retro-98"] .server-rail-icon:is(.active, :hover) {
+  border-radius: var(--theme-control-radius);
+}
+
+[data-theme="likecord-retro-98"] :is(.channel-item.active, .settings-nav-item.active, .context-menu-item:is(:hover, :focus-visible)) {
+  background: var(--brand-primary);
+  color: var(--text-on-brand);
+}
+
+[data-theme="likecord-retro-98"] .context-menu-item.danger:is(:hover, :focus-visible) {
+  background: var(--danger-solid);
+  color: var(--text-on-danger);
+}
+
+[data-theme="likecord-retro-98"] .voice-channel-btn.active {
+  background: var(--bg-active);
+  color: var(--success);
+}
+
+[data-theme="likecord-retro-98"] :is(.context-menu, .settings-nav-item, .context-menu-item) {
+  border-radius: var(--theme-control-radius);
+}
+
+[data-theme="likecord-retro-98"] .home-brand-mark {
+  border: 1px solid var(--theme-chrome-bevel-dark);
+  border-radius: var(--theme-control-radius);
+  background-color: var(--bg-elevated);
+  box-shadow:
+    inset 1px 1px var(--theme-chrome-bevel-highlight),
+    inset -1px -1px var(--theme-chrome-bevel-shadow);
+}
+
+[data-theme="likecord-retro-98"] :is(.home-continue, .home-server-card, .home-empty, .user-panel) {
+  border-radius: var(--theme-control-radius);
+}
+
+[data-theme="likecord-retro-98"] .user-panel-controls {
+  height: 56px;
+}
+
+[data-theme="likecord-retro-98"] .voice-connection {
+  height: 56px;
+}
+
+[data-theme="likecord-retro-98"] .voice-connection-actions {
+  gap: .15rem;
+}
+
+[data-theme="likecord-retro-98"] .settings-layer-sidebar {
+  background: var(--bg-primary);
+}
+
+[data-theme="likecord-retro-98"] .settings-layer-main {
+  background: var(--bg-secondary);
+}
+
+[data-theme="likecord-retro-98"] .member-panel {
+  background: var(--bg-elevated);
+}
+
+[data-theme="likecord-retro-98"] .user-panel-section {
+  padding: 0;
+}
+
+/* Preserve circular identity/status/media geometry and semantic state rings. */
+[data-theme="likecord-retro-98"] :is(
+  .user-avatar-content,
+  .avatar-identity-image,
+  .avatar-settings-current,
+  .avatar-crop-viewport,
+  .user-panel-avatar,
+  .msg-avatar,
+  .member-row-avatar,
+  .status-dot,
+  .role-color-preview
+) {
+  border-radius: 50%;
+}
+
+[data-theme="likecord-retro-98"] :is(.screen-share-central-card, .screen-share-central-media, .screen-share-detached-media, .screen-share-presenter-media, .att-card, .att-image) {
+  border-radius: var(--radius-md);
+}
+
+[data-theme="likecord-retro-98"] .link-preview {
+  border: 1px solid var(--theme-chrome-bevel-dark);
+  border-radius: var(--theme-control-radius);
+  background: var(--bg-tertiary);
+  box-shadow:
+    inset 1px 1px var(--theme-chrome-bevel-highlight),
+    inset -1px -1px var(--theme-chrome-bevel-shadow);
+}
+
+[data-theme="likecord-retro-98"] :is(.app-layout, .app-layout *, .likecord-scrollbar) {
+  scrollbar-color: var(--scrollbar-thumb) var(--bg-elevated);
+}
+
+[data-theme="likecord-retro-98"] :is(.app-layout, .app-layout *, .likecord-scrollbar)::-webkit-scrollbar-track {
+  background: var(--bg-elevated);
+}
+
+[data-theme="likecord-retro-98"] :is(.app-layout, .app-layout *, .likecord-scrollbar)::-webkit-scrollbar-thumb {
+  border: 1px solid var(--theme-chrome-bevel-dark);
+  border-radius: 0;
+  background: var(--scrollbar-thumb);
+  box-shadow:
+    inset 1px 1px var(--theme-chrome-bevel-highlight),
+    inset -1px -1px var(--theme-chrome-bevel-shadow);
+}
+
+@media (forced-colors: active) {
+  [data-theme="likecord-retro-98"] :is(
+    .app-navigation,
+    .app-workspace,
+    .btn,
+    .sm-btn,
+    .danger-button,
+    .settings-content button,
+    .modal,
+    .modal button,
+    .context-menu,
+    .tooltip-content,
+    .composer-inner,
+    .server-rail-icon,
+    .home-brand-mark,
+    .media-viewer-dialog,
+    .media-viewer-error,
+    .media-viewer-zoom-level,
+    .screen-share-detached-card,
+    .screen-share-presenter-card,
+    .screen-share-viewer-list
+  ) {
+    border-color: ButtonText;
+    box-shadow: none;
+  }
+}

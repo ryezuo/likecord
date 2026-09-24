@@ -1,0 +1,15 @@
+node_modules
+dist
+.next
+.env
+.env.*
+!.env.example
+!.env.staging.example
+*.log
+.turbo
+coverage
+.pnpm-store
+secrets
+backups
+*.tsbuildinfo
+cookies.txt

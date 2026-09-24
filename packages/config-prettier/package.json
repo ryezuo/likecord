@@ -1,0 +1,12 @@
+{
+  "name": "@likecord/config-prettier",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "dependencies": {
+    "prettier": "^3.2.0"
+  }
+}

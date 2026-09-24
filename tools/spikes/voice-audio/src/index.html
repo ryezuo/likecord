@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Voice & Audio — spike local</title><link rel="stylesheet" href="/style.css"></head>
+<body><main>
+<p class="eyebrow">LIKECORD · EXPERIMENTO LOCAL</p><h1>Voice & Audio</h1>
+<p>Protótipo de viabilidade. Valores experimentais; nenhuma alteração no produto ou em Staging.</p>
+<p id="identity">Identificando bundle…</p><p id="validated">Identificando a execução local…</p>
+<section aria-labelledby="automated-title"><h2 id="automated-title">Provas automáticas</h2><p>Samples sintéticos, WASM e peers locais. Sem microfone, gravação ou som nos dispositivos.</p><button id="synthetic">Executar provas sintéticas</button> <button id="background">Medir segundo plano (8 s)</button><p id="backgroundStatus" role="status">Pare qualquer sessão antes da medição; as opções Diagnóstico e consentimentos físicos não são necessários.</p><button id="prepareSilentSession">Preparar sessão sintética silenciosa</button><p id="progress" role="status">Pronto. Nenhum recurso de áudio iniciado.</p></section>
+<section aria-labelledby="capture-title"><h2 id="capture-title">Captura autorizada</h2>
+<label><input id="syntheticInput" type="checkbox"> Diagnóstico: entrada sintética Native em vez do microfone físico</label>
+<label class="consent"><input id="micConsent" type="checkbox"> Autorizo o microfone somente neste teste local, sem gravação ou upload.</label>
+<div class="controls"><label>Modo <select id="mode"><option value="native">Nativo</option><option value="rnnoise">RNNoise — suspender NS e isolamento nativos</option></select></label>
+<label>AGC <select id="autoGainControl"><option value="auto">Auto</option><option value="true">On</option><option value="false">Off</option></select></label>
+<label>AEC <select id="echoCancellation"><option value="true">On</option><option value="auto">Auto</option><option value="false">Off</option></select></label>
+<label>NS nativo <select id="noiseSuppression"><option value="true">On</option><option value="auto">Auto</option><option value="false">Off</option></select></label>
+<label>Formato anunciado <select id="format"><option value="auto">Auto / disponível após captura</option></select></label>
+<label>Ganho experimental (%) <input id="gain" type="number" min="0" max="200" step="1" value="100"></label>
+<label>Limiar de ativação (dBFS) <input id="threshold" type="number" min="-80" max="-10" step="1" value="-50"></label>
+<label><input id="gate" type="checkbox"> Gate experimental</label>
+<label>Pre-roll experimental <select id="preroll"><option value="10">10 ms — referência original</option><option value="5" selected>5 ms — candidato para escuta; ainda excede 30 ms com RNNoise</option><option value="0">0 ms — ataque pode ser atenuado</option><option value="frame">FIFO RNNoise — antecipação variável de 0–9,979 ms</option></select></label></div>
+<p>O gate inicia desligado. A variante FIFO exige RNNoise e muda o instante da envoltória conforme o frame; não equivale a pre-roll fixo. Compare começos fracos e ataques curtos. Nenhum valor foi aceito como default do produto.</p>
+<div class="actions"><button id="micStart">Iniciar teste de microfone</button><button id="apply">Aplicar modo / controles</button><button id="micOpen">Abrir microfone do teste</button><button id="mute">Silenciar microfone</button><button id="deafen">Deafen simulado</button><button id="admin">Bloqueio administrativo simulado</button><button id="crash">Injetar falha</button><button id="suspend">Suspender contexto</button><button id="resume">Retomar contexto</button></div>
+<p>O microfone começa fechado. Esta cadeia experimental de voz processa mono a 48 kHz nos dois modos; capturas em outro formato passam pela conversão do navegador, com downmix explícito quando têm mais canais. Isso não limita a capacidade do dispositivo. AGC e AEC mantêm suas escolhas. Papéis de teste não validam a autorização do Likecord.</p>
+<pre id="native">Captura não executada.</pre></section>
+<section aria-labelledby="listen-title"><h2 id="listen-title">Escuta e saída</h2>
+<label><input id="silentOutput" type="checkbox"> Diagnóstico: saída digital silenciosa, sem som no dispositivo</label>
+<label class="consent"><input id="listenConsent" type="checkbox"> Escolhi uma saída privada adequada e autorizo escuta local. Usarei volume confortável.</label>
+<div class="controls"><label>Master experimental (%) <input id="master" type="number" min="0" max="200" step="1" value="30"></label><label>Mix CALL (%) <input id="personal" type="number" min="0" max="100" step="1" value="100"></label><label>Volume Screen (%) <input id="shareVolume" type="number" min="0" max="100" step="1" value="100"></label><label><input id="hidden" type="checkbox"> HIDDEN do share</label></div>
+<div class="actions"><button id="listen">Iniciar escuta pelo peer local</button><button id="listenStop">Silenciar reprodução</button><button id="sink">Escolher saída deste teste</button></div>
+<p id="outputStatus" role="status">A escolha exige escuta autorizada ativa. Nenhuma saída será selecionada automaticamente.</p>
+<div id="outputChoices" hidden><label>Saídas já expostas <select id="outputList"><option value="">Escolha uma saída…</option></select></label> <button id="outputApply">Aplicar saída escolhida</button> <button id="outputCancel">Cancelar escolha de saída</button></div><pre id="outputEvidence">Consultando capacidades sem capturar microfone…</pre>
+<p>Dois peers neste computador permitem testar transporte e APIs; não comprovam acústica remota. SFX não são reproduzidos ou recalibrados neste spike.</p>
+<label class="consent"><input id="shareConsent" type="checkbox"> Autorizo compartilhar conteúdo não sensível neste teste local.</label><button id="shareStart">Escolher Screen Share local</button><video id="screen" muted playsinline controls></video>
+</section>
+<div class="actions sticky"><button id="stop">Parar e liberar todos os recursos</button><button id="export">Exportar métricas sanitizadas</button><button id="diagnose">Medir caminho de áudio (1 s)</button></div>
+<section><h2>Diagnóstico de escuta</h2><p>Medidas digitais não confirmam som físico. Para regressão sem hardware, marque as duas opções de diagnóstico e use a sequência abaixo; ela injeta sinal apenas na aquisição e usa os mesmos handlers de captura, abertura, peers e reprodução.</p><button id="listeningChecks">Executar sequência Native sem som</button><pre id="diagnosis">Não executado.</pre></section>
+<section><h2>Estado efetivo</h2><pre id="state">Microfone fechado · reprodução parada · nenhum peer</pre><h2>Evidências automáticas</h2><pre id="results">Não executadas.</pre></section>
+</main><script type="module" src="/app.js"></script></body></html>

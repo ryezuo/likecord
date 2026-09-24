@@ -1,0 +1,11 @@
+node_modules/
+.cache/
+dist/
+
+# New measurements are local; keep only canonical historical summaries.
+results/*
+!results/.gitattributes
+!results/artifact-inspection.json
+!results/va3b-lifetime-final-review.json
+!results/va3b-lifetime-report.txt
+!results/va3b-preparation-report.txt

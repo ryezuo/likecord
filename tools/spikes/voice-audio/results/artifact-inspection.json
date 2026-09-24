@@ -1,0 +1,1421 @@
+{
+  "origin": "source_or_artifact_inspection",
+  "package": "@jitsi/rnnoise-wasm@0.2.1",
+  "wrapper": "cb529a59a8478fe604e57986fc96afdaecfa6fb7",
+  "engine": "372f7b4b76cde4ca1ec4605353dd17898a99de38",
+  "integrity": "sha512-iEj77www43pS2Yq+cfLZb+hFuI7L5ccisBzzPMcOjjLsG4/LAlkD1CY58/8gc84nHdLBGmD/OPIWGnvYnXvB0A==",
+  "tarballSha256": "c80b015b69701699868086a30015e5e680bee41a68df4c8ad2daed8b1bbc1173",
+  "files": {
+    "dist/rnnoise-sync.js": {
+      "bytes": 1933102,
+      "sha256": "05a553f523d59502d133a6d05dbf1878137c9e7bcff06edf5561f7001b62f95f",
+      "matchesRegistryAndPinnedGit": true
+    },
+    "dist/rnnoise.js": {
+      "bytes": 12265,
+      "sha256": "83a86f528a0f4d5c61a84be40dac9f15e5d114f24971bd5953f7f21879bc9bdf",
+      "matchesRegistryAndPinnedGit": true
+    },
+    "dist/rnnoise.wasm": {
+      "bytes": 112141,
+      "sha256": "677147b9248aedc0a00de79dc090d1ecead37c08c8bb773a790da16109d2c487",
+      "matchesRegistryAndPinnedGit": true
+    },
+    "LICENSE": {
+      "bytes": 12588,
+      "sha256": "4646d0ab74a05730f8b3b12b6376ddccb7f0905ee5b69265b3d873b97ace3e94",
+      "matchesRegistryAndPinnedGit": true
+    },
+    "build.sh": {
+      "bytes": 2496,
+      "sha256": "c17402b868dc40c8c925039d96b6b970e172aff755eb2030e4271eef0576833d",
+      "matchesRegistryAndPinnedGit": true
+    },
+    "Dockerfile": {
+      "bytes": 117,
+      "sha256": "fb8d7cb69e44dcbc5140ec7986b5939cd79a1a829b0e7ebbc0ada1e9a5b05784",
+      "matchesRegistryAndPinnedGit": true
+    }
+  },
+  "syncWasm": {
+    "bytes": 1440118,
+    "sha256": "4f513a50613de74378331237886138eab52fa2650e8b1a41eb587d932d9b8850",
+    "exports": [
+      {
+        "name": "c",
+        "kind": "memory"
+      },
+      {
+        "name": "d",
+        "kind": "function"
+      },
+      {
+        "name": "e",
+        "kind": "function"
+      },
+      {
+        "name": "f",
+        "kind": "function"
+      },
+      {
+        "name": "g",
+        "kind": "function"
+      },
+      {
+        "name": "h",
+        "kind": "function"
+      },
+      {
+        "name": "i",
+        "kind": "function"
+      },
+      {
+        "name": "j",
+        "kind": "function"
+      },
+      {
+        "name": "k",
+        "kind": "table"
+      }
+    ],
+    "imports": [
+      {
+        "module": "a",
+        "name": "a",
+        "kind": "function"
+      },
+      {
+        "module": "a",
+        "name": "b",
+        "kind": "function"
+      }
+    ]
+  },
+  "model": {
+    "id": "0b50c45",
+    "url": "https://media.xiph.org/rnnoise/models/rnnoise_data-0b50c45.tar.gz",
+    "bytes": 22270507,
+    "sha256": "4ac81c5c0884ec4bd5907026aaae16209b7b76cd9d7f71af582094a2f98f4b43",
+    "archiveEntries": [
+      "models/rnnoise8Za_25.pth",
+      "src/rnnoise_data.c",
+      "src/rnnoise_data.h",
+      "src/rnnoise_data_little.c",
+      "src/rnnoise_data_little.h"
+    ],
+    "arrays": [
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "conv1_weights_float",
+        "type": "float",
+        "count": 24960,
+        "bytes": 99840,
+        "sha256": "b8bd3ebd6c986243818899cf565a8e0b27c2e27094d33f5f33b8c46489b38832",
+        "offsetInPublishedWasm": 20682
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "conv1_bias",
+        "type": "float",
+        "count": 128,
+        "bytes": 512,
+        "sha256": "73b5dc5bb2c8179ddda823c38fdb203a71aadc838c2fdd4888211a76ce1d69d6",
+        "offsetInPublishedWasm": 120538
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "conv2_weights_int8",
+        "type": "opus_int8",
+        "count": 147456,
+        "bytes": 147456,
+        "sha256": "136c965fb51309db837a52d2bc2f7bbfc32f591ceb92e12d296c9ead70cfc8ed",
+        "offsetInPublishedWasm": 121077
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "conv2_weights_float",
+        "type": "float",
+        "count": 147456,
+        "bytes": 589824,
+        "sha256": "2b17b93bbdfbb9f58c4191b5bc2d01eeaef5fb3032fea62cf451b08bc205f9e4",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "conv2_subias",
+        "type": "float",
+        "count": 384,
+        "bytes": 1536,
+        "sha256": "7dc5ad48bab19ae37113a14018443675c2df2facdf0b8a7786a40e4c58523dbc",
+        "offsetInPublishedWasm": 268549
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "conv2_scale",
+        "type": "float",
+        "count": 384,
+        "bytes": 1536,
+        "sha256": "feed91f317c6fc9150b0ad9740d5729dccda9a6c38277ecf8bf576b72c0427ee",
+        "offsetInPublishedWasm": 270101
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "conv2_bias",
+        "type": "float",
+        "count": 384,
+        "bytes": 1536,
+        "sha256": "057d22d2e15215c50620189b16e51d8624d462cbfe569eb4274ad30dae49663b",
+        "offsetInPublishedWasm": 271653
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru1_input_weights_int8",
+        "type": "opus_int8",
+        "count": 147456,
+        "bytes": 147456,
+        "sha256": "e3b5a4dcdd33bcf376c55b1f4836b4e26f43dfb653c0693a0170349ad559a706",
+        "offsetInPublishedWasm": 273221
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru1_input_weights_float",
+        "type": "float",
+        "count": 147456,
+        "bytes": 589824,
+        "sha256": "b57529e71cd78a0931a2d4d28dfde11173553e004e9a739ccbc2ae49a280a882",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru1_input_weights_idx",
+        "type": "int",
+        "count": 4752,
+        "bytes": 19008,
+        "sha256": "ae0a5169b56ad8b4a812d8334688a4f840c345e634b3250a49c08f39d824f93b",
+        "offsetInPublishedWasm": 420708
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru1_input_subias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "4be29875d0a1d394fcdaf607802b993d443a90c998836776e14c053a7b8a11e2",
+        "offsetInPublishedWasm": 439741
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru1_input_scale",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "c2d6755dff9dd836cd6a81b0e596cec30ab5b253b524adf6ec3904424484d298",
+        "offsetInPublishedWasm": 444374
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru1_input_bias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "4f87020c7b4a8745ef75cab02ff9f3b01d8f1a6d2ab7d3aad4e7b5a68a62258c",
+        "offsetInPublishedWasm": 448998
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru1_recurrent_weights_diag",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "88552edb3714be29dc0764a84fd18dac9667ae38ae62f3f75c319d795f675e8b",
+        "offsetInPublishedWasm": 453638
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru1_recurrent_weights_int8",
+        "type": "opus_int8",
+        "count": 147456,
+        "bytes": 147456,
+        "sha256": "ed8500ef720bb96ba5beaabc0a4273e08da5bce42cb480d2aed4d3b221de44ec",
+        "offsetInPublishedWasm": 458278
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru1_recurrent_weights_float",
+        "type": "float",
+        "count": 147456,
+        "bytes": 589824,
+        "sha256": "f0b8521292705cbc0919a350703f4a325d10f4665dc75d2deccd9f9ae8762ed2",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru1_recurrent_weights_idx",
+        "type": "int",
+        "count": 4752,
+        "bytes": 19008,
+        "sha256": "217cf7ce19221bcb344d4e8b7170891cbec04074d5ce4bf3a377848bae0ab506",
+        "offsetInPublishedWasm": 605766
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru1_recurrent_subias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "3303347283759d526ff48f403b33126227cb1646024adc4883c7ad0bff8fd470",
+        "offsetInPublishedWasm": 624803
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru1_recurrent_scale",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "54bf865f769978c5560110003aa9fc53283a43f4a719b5394a975e82dd1a12c5",
+        "offsetInPublishedWasm": 629439
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru1_recurrent_bias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "291719e333675044de3b574f773e7c05d95654f5a22575754e997d66af745164",
+        "offsetInPublishedWasm": 634074
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru2_input_weights_int8",
+        "type": "opus_int8",
+        "count": 147456,
+        "bytes": 147456,
+        "sha256": "4585a9c4bc8a2e0dd6ce28811f2278632a954a1f9fc267064888d41dede2028c",
+        "offsetInPublishedWasm": 638714
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru2_input_weights_float",
+        "type": "float",
+        "count": 147456,
+        "bytes": 589824,
+        "sha256": "e384fbc67a6b30927925bbbb32d6bb7f28885d624d3ef2082281ea01c28a83ea",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru2_input_weights_idx",
+        "type": "int",
+        "count": 4752,
+        "bytes": 19008,
+        "sha256": "820ac7aba0b24cd4c99ea11d146d98709c68d2401322022cbb90f99d26666491",
+        "offsetInPublishedWasm": 786201
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru2_input_subias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "ec979245a3263f71e7ae8c3b07e840c24d0531f69a801f6bc6d3a5afe1b11ffd",
+        "offsetInPublishedWasm": 805234
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru2_input_scale",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "5e493e0b3e85b01c472ee8a9ff8e01eff6e31cebe4b3ad783e7daac10a8361bf",
+        "offsetInPublishedWasm": 809867
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru2_input_bias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "278b5c16d2caa395b0a588ecba3ed38f880ab39110bd0ead0fad251d50af7cbd",
+        "offsetInPublishedWasm": 814491
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru2_recurrent_weights_diag",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "80d9f2d4a0177547fbb10014348f8114b3284da91e2afc51d8cd25e978d9325d",
+        "offsetInPublishedWasm": 819131
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru2_recurrent_weights_int8",
+        "type": "opus_int8",
+        "count": 147456,
+        "bytes": 147456,
+        "sha256": "a8db4e6718c238237b426f04188f8855a627725b0499da8c1bc0f9a87e572d1b",
+        "offsetInPublishedWasm": 823771
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru2_recurrent_weights_float",
+        "type": "float",
+        "count": 147456,
+        "bytes": 589824,
+        "sha256": "cc42dd17c85d1adb800d39a149bb42cf402b0fecedd121f92bae3a613c74bcf6",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru2_recurrent_weights_idx",
+        "type": "int",
+        "count": 4752,
+        "bytes": 19008,
+        "sha256": "3dff3c9a05ca7447c462b50e0bd4400edef26110b51d222c6da3b3e898acfd38",
+        "offsetInPublishedWasm": 971259
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru2_recurrent_subias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "a716e76185b8b5f368718b36526c0cde8fe0ff1e387d37f014490fc0455c7192",
+        "offsetInPublishedWasm": 990296
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru2_recurrent_scale",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "ab6d708cc9dcb200b4d1060cdb4dff82801b4075cb8252def500a75f4bccc874",
+        "offsetInPublishedWasm": 994932
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru2_recurrent_bias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "34b7429c526603418be69461a9c2e6cb2c1a8ac0dd589b3aecb0268af33f9c7c",
+        "offsetInPublishedWasm": 999567
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru3_input_weights_int8",
+        "type": "opus_int8",
+        "count": 147456,
+        "bytes": 147456,
+        "sha256": "f529b46d18c129842b74d18ae6e8225b3d1f04d4ad97fd72593a286415dd2cb0",
+        "offsetInPublishedWasm": 1004207
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru3_input_weights_float",
+        "type": "float",
+        "count": 147456,
+        "bytes": 589824,
+        "sha256": "81e463241470fe137d505037e9500050e45f7d4153f20a5567a49ba8a442e70c",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru3_input_weights_idx",
+        "type": "int",
+        "count": 4752,
+        "bytes": 19008,
+        "sha256": "0a2b4308c5a1ce1185db599af6f655ce7232f7b0ca5eb6b2742598fb2e1e9245",
+        "offsetInPublishedWasm": 1151695
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru3_input_subias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "b0050755751ba29d6fe155cda782bf89cde23fdc3313708d696b5d6ec8710bbb",
+        "offsetInPublishedWasm": 1170729
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru3_input_scale",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "7e72606eb4f7074afd88337ff6fee91919267c79a2fa45cde96d285171265db8",
+        "offsetInPublishedWasm": 1175363
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru3_input_bias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "62a958ee5e19ed410609369a115dd25cae4cad092c72bf5a9e009b70a0383d22",
+        "offsetInPublishedWasm": 1179987
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru3_recurrent_weights_diag",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "dc1c5cea2c14d4a9b14918ee3b1f9826c1320723b8f98eebc6383ea2e5db8b7e",
+        "offsetInPublishedWasm": 1184627
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru3_recurrent_weights_int8",
+        "type": "opus_int8",
+        "count": 147456,
+        "bytes": 147456,
+        "sha256": "b9322fd58baffd716c494f1cee5f621888f803c2b1c70fedec17df4473a614af",
+        "offsetInPublishedWasm": 1189267
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru3_recurrent_weights_float",
+        "type": "float",
+        "count": 147456,
+        "bytes": 589824,
+        "sha256": "f9005a40a629cd6c1ffc053434f176bb34804e749a5a88fd846aa36e4a7410af",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru3_recurrent_weights_idx",
+        "type": "int",
+        "count": 4752,
+        "bytes": 19008,
+        "sha256": "5f49fadb8444d45d521d2b8a333dc3c891a7f4d448115541ff7925053852adef",
+        "offsetInPublishedWasm": 1336755
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru3_recurrent_subias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "b237edae64d9115c9ec2d05e1559bfcb3d9ce8c1bfa5bb9562fad472a7a8b32d",
+        "offsetInPublishedWasm": 1355793
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru3_recurrent_scale",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "cde0239359714f4d9334f867247214eae92f2b3a24cecef80a8f4f6e638acf3d",
+        "offsetInPublishedWasm": 1360430
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "gru3_recurrent_bias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "2320f6975f355a62fd204a2e95a9bb17ae5c3285e016811e011c80dd9f206c87",
+        "offsetInPublishedWasm": 1365066
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "dense_out_weights_float",
+        "type": "float",
+        "count": 12288,
+        "bytes": 49152,
+        "sha256": "d517cd8448eee494a3c76335a69a3e1e726a6778da96bee2106ab202db257547",
+        "offsetInPublishedWasm": 1369707
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "dense_out_bias",
+        "type": "float",
+        "count": 32,
+        "bytes": 128,
+        "sha256": "c4e406d9a0f6119706c6558f9eefda337fc9c5e239f6d639dabcb4baddd32b35",
+        "offsetInPublishedWasm": 1418875
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "vad_dense_weights_float",
+        "type": "float",
+        "count": 384,
+        "bytes": 1536,
+        "sha256": "28e62fabe70ceec56cbd233ddcd89b308fdea7309b8d77c550950f15d588d41d",
+        "offsetInPublishedWasm": 1419035
+      },
+      {
+        "file": "src/rnnoise_data.c",
+        "name": "vad_dense_bias",
+        "type": "float",
+        "count": 1,
+        "bytes": 4,
+        "sha256": "94e94f1fc789b847b1d89337a7ce3822a2cdfb583f6b60fe5794bc01696210d6",
+        "offsetInPublishedWasm": 1420587
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "conv1_weights_float",
+        "type": "float",
+        "count": 24960,
+        "bytes": 99840,
+        "sha256": "57ce9553b171d6d1e57a474602fc55ea31f7996071854cc930fc40b7e257b7cf",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "conv1_bias",
+        "type": "float",
+        "count": 128,
+        "bytes": 512,
+        "sha256": "c9590fcf9c7a577873e0c550481f6691fb342f5d80b775dad92a8b1bcc17b23f",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "conv2_weights_int8",
+        "type": "opus_int8",
+        "count": 147456,
+        "bytes": 147456,
+        "sha256": "b5c069d74762b4c1c784fa2ca241bc8dca69190b32951e0d07adbf248f8aa552",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "conv2_weights_float",
+        "type": "float",
+        "count": 147456,
+        "bytes": 589824,
+        "sha256": "9f18cd8018abe7a411698a06475f586993135f6e7d69534845c5e49aef4d2f49",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "conv2_subias",
+        "type": "float",
+        "count": 384,
+        "bytes": 1536,
+        "sha256": "11d9ca5cefa97b6eaca1299f8ef174ddad1abfe729693c8c37b3d6e7e61da5cf",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "conv2_scale",
+        "type": "float",
+        "count": 384,
+        "bytes": 1536,
+        "sha256": "ca18f20a220056ce6fdaa0a624d8f077159251b7123d028601f7fc1f222b1e68",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "conv2_bias",
+        "type": "float",
+        "count": 384,
+        "bytes": 1536,
+        "sha256": "72e966028b9cd401c7e3afbefd0b40f196b449377efba51c6e652843c1a14205",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru1_input_weights_int8",
+        "type": "opus_int8",
+        "count": 58976,
+        "bytes": 58976,
+        "sha256": "d76d61587765e8609f011243209ae55496be889adb825ab3daad2050554679f6",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru1_input_weights_float",
+        "type": "float",
+        "count": 58976,
+        "bytes": 235904,
+        "sha256": "3fdd269b16136f973bc2995c964096cd0fac98efc4a9bd23da80627eab3ada78",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru1_input_weights_idx",
+        "type": "int",
+        "count": 1987,
+        "bytes": 7948,
+        "sha256": "8828dc548f3c5190d6c3bfc06606e193018c887977c80bf9dc090b236a243e45",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru1_input_subias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "bb2a4c3c3ea324d668b4e7c5db323d66e10b89666b6780f8a909f110cde2ad0d",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru1_input_scale",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "c34b93050cb0f67a108ebd0dc170d5b25a8a5726de1f4c88cbd52ae04de237c9",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru1_input_bias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "2f968a669ef5d09b359d193b60925180dc3fbe1123a7fcd302103bb165783d04",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru1_recurrent_weights_diag",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "072aec503646633b55e62bf9c44c32faf1a58cfeb09ef9a63235cbb9eff6eb55",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru1_recurrent_weights_int8",
+        "type": "opus_int8",
+        "count": 58976,
+        "bytes": 58976,
+        "sha256": "82f6a4000107f9a76cd0db382dc75d6bd141a117191446671facfe92fb1e7da0",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru1_recurrent_weights_float",
+        "type": "float",
+        "count": 58976,
+        "bytes": 235904,
+        "sha256": "059e5016193933fc322ef0eedce864c7d154255e810a6500ce0989b4ecdf6f97",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru1_recurrent_weights_idx",
+        "type": "int",
+        "count": 1987,
+        "bytes": 7948,
+        "sha256": "2460794bea8c651bd9344f9a4d58c11ec539b501549916a36bed5fd750189795",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru1_recurrent_subias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "3d6fdb97edbc34f741f8b23a0b5e7cedc346980ef29fb1952ae15b93857e3334",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru1_recurrent_scale",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "655f71cb5f57962ee1bb3e871fb567bd633d991c91fd37149612d09902cfdd45",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru1_recurrent_bias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "07748d9ba883fe86cfc5046c6ec35d0d3089c43a356ae09f8b6b578119f62497",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru2_input_weights_int8",
+        "type": "opus_int8",
+        "count": 58976,
+        "bytes": 58976,
+        "sha256": "6bdb8c0846e65429a16c3abce677d5bc58ace843a37cf7ae70ff1c49e8dc6f3d",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru2_input_weights_float",
+        "type": "float",
+        "count": 58976,
+        "bytes": 235904,
+        "sha256": "15dc05f755c1eb0cfa33089db9d2ef2e450190f5b07739214321ac4921aa64f0",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru2_input_weights_idx",
+        "type": "int",
+        "count": 1987,
+        "bytes": 7948,
+        "sha256": "263422fee6624e10f95004a5e96e40a04872c329334099c04abb0d12005dc81f",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru2_input_subias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "91241bada266de1f47fb9b535982f1a620c18df963e60a9cce3b98c4b4fe05d7",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru2_input_scale",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "faf2bc401fba261146853017659b973eba33905e340694325a426699462e6f24",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru2_input_bias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "bbb9e6282a2826cd52bdaaf138a994a35fcaa827c5f20fcd95b3beae491976a1",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru2_recurrent_weights_diag",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "3aae8e41a25028c96dfebda503709c9e2d13c788463be6f5204bf6a4a6a6d0d9",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru2_recurrent_weights_int8",
+        "type": "opus_int8",
+        "count": 58976,
+        "bytes": 58976,
+        "sha256": "d84100a5c83cc8c41155d0604962b8f699590d7ec18a4fb829639a9b0125d207",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru2_recurrent_weights_float",
+        "type": "float",
+        "count": 58976,
+        "bytes": 235904,
+        "sha256": "36de401c59ce7407795f56565746c88fa9fe1ef13283017a2032a4218db56ee8",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru2_recurrent_weights_idx",
+        "type": "int",
+        "count": 1987,
+        "bytes": 7948,
+        "sha256": "144dcc3137763147c1012c1c8c6acdbb8f5c817566975fa857a4eeee6e70143f",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru2_recurrent_subias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "1a29266d2221f6916990e2434ef9dfab08ff514d9fa182596d2b8a70d3541c1b",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru2_recurrent_scale",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "9869524a3da74683a439e5a5a06208a8b18995bfd85fad45b4604acae0a7e263",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru2_recurrent_bias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "74d64803a6bf0b85137ddbb1fa6c76187e32d210dc64a6b07dcf40b04cc95618",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru3_input_weights_int8",
+        "type": "opus_int8",
+        "count": 58976,
+        "bytes": 58976,
+        "sha256": "581e3fa7ae1c087b02f302194110312cab809d6ff6699f4c0e08f6d81675ccfc",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru3_input_weights_float",
+        "type": "float",
+        "count": 58976,
+        "bytes": 235904,
+        "sha256": "f6ea91f9f74cd8c61695b9412c06556f7a30c83b41c33286c52abf3b169ef254",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru3_input_weights_idx",
+        "type": "int",
+        "count": 1987,
+        "bytes": 7948,
+        "sha256": "ebb5fc7e32183112d4084d0fd9696b956d831fab1aa732f9b13a6af6f734e914",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru3_input_subias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "1ec986643ad602cec02310e08b9bfaa9a745597b1b51037e505a32f122dc5b9c",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru3_input_scale",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "a68b64706c029d147ea574e28227554099a046480efd6d224fe17abce3496688",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru3_input_bias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "a5ed68d20ecde3345e4ff59ebdf3f7ce993879744420f27d9d27f069a6a11087",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru3_recurrent_weights_diag",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "4c84bbd5a9edbca15f4154eb261857bd9a043235e71f3e693a9c91e3db2c08da",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru3_recurrent_weights_int8",
+        "type": "opus_int8",
+        "count": 58976,
+        "bytes": 58976,
+        "sha256": "428d0fd2918fe126f0b902f977f1fec00d763442da64d67d56e0a1abdcd41da7",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru3_recurrent_weights_float",
+        "type": "float",
+        "count": 58976,
+        "bytes": 235904,
+        "sha256": "1654b601fc265960099767c3b0b0768e5a80d925bd909ceac9ea7b6f1bc07676",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru3_recurrent_weights_idx",
+        "type": "int",
+        "count": 1987,
+        "bytes": 7948,
+        "sha256": "5ca648e2a1ce83ac50c169fb1a0aff02540aa5584cadc62ec1a616c45f891796",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru3_recurrent_subias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "ab3b9fcf600c6f6a18ba0f696b0fc57f49217ae399505c9bf3454fd873e39ed6",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru3_recurrent_scale",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "0f083703bda9f16ad0615282a19f50f5d66cc6c3f5af3e3033965ea94a4fc6d0",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "gru3_recurrent_bias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "9c563b18d39566a81ad629f6f4ee7f1cfaaf92124bcd4fc45c974f117136d9de",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "dense_out_weights_float",
+        "type": "float",
+        "count": 12288,
+        "bytes": 49152,
+        "sha256": "f7a2ce30de14156d29286c337bf6925cc976ff23b8619697321f789671ea6d39",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "dense_out_bias",
+        "type": "float",
+        "count": 32,
+        "bytes": 128,
+        "sha256": "edb21cf341c6dc756ab8aaab7f5f3741803f16aaf1829e554104182f6320d370",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "vad_dense_weights_float",
+        "type": "float",
+        "count": 384,
+        "bytes": 1536,
+        "sha256": "50170874612b7e1664f81cede63f1295d73851d2c8a5ad5a15875398aededad1",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "src/rnnoise_data_little.c",
+        "name": "vad_dense_bias",
+        "type": "float",
+        "count": 1,
+        "bytes": 4,
+        "sha256": "54546e63c8f0553c1fa103572e50bb07d5195e0ad9e6f18d8ef860ac95d1ef1e",
+        "offsetInPublishedWasm": -1
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "conv1_weights_float",
+        "type": "float",
+        "count": 24960,
+        "bytes": 99840,
+        "sha256": "b8bd3ebd6c986243818899cf565a8e0b27c2e27094d33f5f33b8c46489b38832",
+        "offsetInPublishedWasm": 20682
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "conv1_bias",
+        "type": "float",
+        "count": 128,
+        "bytes": 512,
+        "sha256": "73b5dc5bb2c8179ddda823c38fdb203a71aadc838c2fdd4888211a76ce1d69d6",
+        "offsetInPublishedWasm": 120538
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "conv2_weights_int8",
+        "type": "opus_int8",
+        "count": 147456,
+        "bytes": 147456,
+        "sha256": "136c965fb51309db837a52d2bc2f7bbfc32f591ceb92e12d296c9ead70cfc8ed",
+        "offsetInPublishedWasm": 121077
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "conv2_subias",
+        "type": "float",
+        "count": 384,
+        "bytes": 1536,
+        "sha256": "7dc5ad48bab19ae37113a14018443675c2df2facdf0b8a7786a40e4c58523dbc",
+        "offsetInPublishedWasm": 268549
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "conv2_scale",
+        "type": "float",
+        "count": 384,
+        "bytes": 1536,
+        "sha256": "feed91f317c6fc9150b0ad9740d5729dccda9a6c38277ecf8bf576b72c0427ee",
+        "offsetInPublishedWasm": 270101
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "conv2_bias",
+        "type": "float",
+        "count": 384,
+        "bytes": 1536,
+        "sha256": "057d22d2e15215c50620189b16e51d8624d462cbfe569eb4274ad30dae49663b",
+        "offsetInPublishedWasm": 271653
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru1_input_weights_int8",
+        "type": "opus_int8",
+        "count": 147456,
+        "bytes": 147456,
+        "sha256": "e3b5a4dcdd33bcf376c55b1f4836b4e26f43dfb653c0693a0170349ad559a706",
+        "offsetInPublishedWasm": 273221
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru1_input_weights_idx",
+        "type": "int",
+        "count": 4752,
+        "bytes": 19008,
+        "sha256": "ae0a5169b56ad8b4a812d8334688a4f840c345e634b3250a49c08f39d824f93b",
+        "offsetInPublishedWasm": 420708
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru1_input_subias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "4be29875d0a1d394fcdaf607802b993d443a90c998836776e14c053a7b8a11e2",
+        "offsetInPublishedWasm": 439741
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru1_input_scale",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "c2d6755dff9dd836cd6a81b0e596cec30ab5b253b524adf6ec3904424484d298",
+        "offsetInPublishedWasm": 444374
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru1_input_bias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "4f87020c7b4a8745ef75cab02ff9f3b01d8f1a6d2ab7d3aad4e7b5a68a62258c",
+        "offsetInPublishedWasm": 448998
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru1_recurrent_weights_diag",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "88552edb3714be29dc0764a84fd18dac9667ae38ae62f3f75c319d795f675e8b",
+        "offsetInPublishedWasm": 453638
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru1_recurrent_weights_int8",
+        "type": "opus_int8",
+        "count": 147456,
+        "bytes": 147456,
+        "sha256": "ed8500ef720bb96ba5beaabc0a4273e08da5bce42cb480d2aed4d3b221de44ec",
+        "offsetInPublishedWasm": 458278
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru1_recurrent_weights_idx",
+        "type": "int",
+        "count": 4752,
+        "bytes": 19008,
+        "sha256": "217cf7ce19221bcb344d4e8b7170891cbec04074d5ce4bf3a377848bae0ab506",
+        "offsetInPublishedWasm": 605766
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru1_recurrent_subias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "3303347283759d526ff48f403b33126227cb1646024adc4883c7ad0bff8fd470",
+        "offsetInPublishedWasm": 624803
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru1_recurrent_scale",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "54bf865f769978c5560110003aa9fc53283a43f4a719b5394a975e82dd1a12c5",
+        "offsetInPublishedWasm": 629439
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru1_recurrent_bias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "291719e333675044de3b574f773e7c05d95654f5a22575754e997d66af745164",
+        "offsetInPublishedWasm": 634074
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru2_input_weights_int8",
+        "type": "opus_int8",
+        "count": 147456,
+        "bytes": 147456,
+        "sha256": "4585a9c4bc8a2e0dd6ce28811f2278632a954a1f9fc267064888d41dede2028c",
+        "offsetInPublishedWasm": 638714
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru2_input_weights_idx",
+        "type": "int",
+        "count": 4752,
+        "bytes": 19008,
+        "sha256": "820ac7aba0b24cd4c99ea11d146d98709c68d2401322022cbb90f99d26666491",
+        "offsetInPublishedWasm": 786201
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru2_input_subias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "ec979245a3263f71e7ae8c3b07e840c24d0531f69a801f6bc6d3a5afe1b11ffd",
+        "offsetInPublishedWasm": 805234
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru2_input_scale",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "5e493e0b3e85b01c472ee8a9ff8e01eff6e31cebe4b3ad783e7daac10a8361bf",
+        "offsetInPublishedWasm": 809867
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru2_input_bias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "278b5c16d2caa395b0a588ecba3ed38f880ab39110bd0ead0fad251d50af7cbd",
+        "offsetInPublishedWasm": 814491
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru2_recurrent_weights_diag",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "80d9f2d4a0177547fbb10014348f8114b3284da91e2afc51d8cd25e978d9325d",
+        "offsetInPublishedWasm": 819131
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru2_recurrent_weights_int8",
+        "type": "opus_int8",
+        "count": 147456,
+        "bytes": 147456,
+        "sha256": "a8db4e6718c238237b426f04188f8855a627725b0499da8c1bc0f9a87e572d1b",
+        "offsetInPublishedWasm": 823771
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru2_recurrent_weights_idx",
+        "type": "int",
+        "count": 4752,
+        "bytes": 19008,
+        "sha256": "3dff3c9a05ca7447c462b50e0bd4400edef26110b51d222c6da3b3e898acfd38",
+        "offsetInPublishedWasm": 971259
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru2_recurrent_subias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "a716e76185b8b5f368718b36526c0cde8fe0ff1e387d37f014490fc0455c7192",
+        "offsetInPublishedWasm": 990296
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru2_recurrent_scale",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "ab6d708cc9dcb200b4d1060cdb4dff82801b4075cb8252def500a75f4bccc874",
+        "offsetInPublishedWasm": 994932
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru2_recurrent_bias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "34b7429c526603418be69461a9c2e6cb2c1a8ac0dd589b3aecb0268af33f9c7c",
+        "offsetInPublishedWasm": 999567
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru3_input_weights_int8",
+        "type": "opus_int8",
+        "count": 147456,
+        "bytes": 147456,
+        "sha256": "f529b46d18c129842b74d18ae6e8225b3d1f04d4ad97fd72593a286415dd2cb0",
+        "offsetInPublishedWasm": 1004207
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru3_input_weights_idx",
+        "type": "int",
+        "count": 4752,
+        "bytes": 19008,
+        "sha256": "0a2b4308c5a1ce1185db599af6f655ce7232f7b0ca5eb6b2742598fb2e1e9245",
+        "offsetInPublishedWasm": 1151695
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru3_input_subias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "b0050755751ba29d6fe155cda782bf89cde23fdc3313708d696b5d6ec8710bbb",
+        "offsetInPublishedWasm": 1170729
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru3_input_scale",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "7e72606eb4f7074afd88337ff6fee91919267c79a2fa45cde96d285171265db8",
+        "offsetInPublishedWasm": 1175363
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru3_input_bias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "62a958ee5e19ed410609369a115dd25cae4cad092c72bf5a9e009b70a0383d22",
+        "offsetInPublishedWasm": 1179987
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru3_recurrent_weights_diag",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "dc1c5cea2c14d4a9b14918ee3b1f9826c1320723b8f98eebc6383ea2e5db8b7e",
+        "offsetInPublishedWasm": 1184627
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru3_recurrent_weights_int8",
+        "type": "opus_int8",
+        "count": 147456,
+        "bytes": 147456,
+        "sha256": "b9322fd58baffd716c494f1cee5f621888f803c2b1c70fedec17df4473a614af",
+        "offsetInPublishedWasm": 1189267
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru3_recurrent_weights_idx",
+        "type": "int",
+        "count": 4752,
+        "bytes": 19008,
+        "sha256": "5f49fadb8444d45d521d2b8a333dc3c891a7f4d448115541ff7925053852adef",
+        "offsetInPublishedWasm": 1336755
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru3_recurrent_subias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "b237edae64d9115c9ec2d05e1559bfcb3d9ce8c1bfa5bb9562fad472a7a8b32d",
+        "offsetInPublishedWasm": 1355793
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru3_recurrent_scale",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "cde0239359714f4d9334f867247214eae92f2b3a24cecef80a8f4f6e638acf3d",
+        "offsetInPublishedWasm": 1360430
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "gru3_recurrent_bias",
+        "type": "float",
+        "count": 1152,
+        "bytes": 4608,
+        "sha256": "2320f6975f355a62fd204a2e95a9bb17ae5c3285e016811e011c80dd9f206c87",
+        "offsetInPublishedWasm": 1365066
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "dense_out_weights_float",
+        "type": "float",
+        "count": 12288,
+        "bytes": 49152,
+        "sha256": "d517cd8448eee494a3c76335a69a3e1e726a6778da96bee2106ab202db257547",
+        "offsetInPublishedWasm": 1369707
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "dense_out_bias",
+        "type": "float",
+        "count": 32,
+        "bytes": 128,
+        "sha256": "c4e406d9a0f6119706c6558f9eefda337fc9c5e239f6d639dabcb4baddd32b35",
+        "offsetInPublishedWasm": 1418875
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "vad_dense_weights_float",
+        "type": "float",
+        "count": 384,
+        "bytes": 1536,
+        "sha256": "28e62fabe70ceec56cbd233ddcd89b308fdea7309b8d77c550950f15d588d41d",
+        "offsetInPublishedWasm": 1419035
+      },
+      {
+        "file": "rnnoise-0.2/src/rnnoise_data.c",
+        "name": "vad_dense_bias",
+        "type": "float",
+        "count": 1,
+        "bytes": 4,
+        "sha256": "94e94f1fc789b847b1d89337a7ce3822a2cdfb583f6b60fe5794bc01696210d6",
+        "offsetInPublishedWasm": 1420587
+      }
+    ],
+    "licensedSourceRelease": {
+      "url": "https://github.com/xiph/rnnoise/releases/download/v0.2/rnnoise-0.2.tar.gz",
+      "sha256": "90fce4b00b9ff24c08dbfe31b82ffd43bae383d85c5535676d28b0a2b11c0d37",
+      "matchedArrays": 43,
+      "copyingMatchesPinnedEngine": true,
+      "rawGeneratedFilesIdentical": false,
+      "explanation": "Release contains 43 arrays; model archive additionally contains 7 DISABLE_DEBUG_FLOAT alternatives. All 43 release arrays match the archive and published WASM byte for byte."
+    }
+  },
+  "engineSourceArchiveSha256": "40ff1568af151959933699fcbf2db3ee3c62fa9559557dbf61a65e7a12cd335d",
+  "noticeSha256": "bc83e8ce773e39bcfc382e1e20c4b6d2c8e959ef1c01b0d7f955d73716089d74",
+  "build": {
+    "publishedRecipe": "Emscripten 3.1.14, unpinned image digest / apt packages",
+    "rebuilt": false,
+    "bitIdenticalRebuild": "not_proven"
+  },
+  "licensing": {
+    "wrapper": "Apache-2.0 with retained MIT notice",
+    "engine": "BSD-3-Clause root COPYING plus BSD-2-Clause/file notices",
+    "selectedCompiledWeights": "All 43 arrays match the official RNNoise 0.2 source distribution with COPYING; scoped redistribution basis verified independently of Jitsi metadata",
+    "trainingCheckpoint": "Not executed or distributed; its separate scope is not asserted",
+    "trainingDataLineage": "Upstream README describes public datasets; exact training run/mix not independently reconstructed",
+    "distributionPermissionForObservedCodeAndCompiledWeights": "verified_scope_with_notices",
+    "productionDistributionAccepted": false
+  },
+  "productionPackageAccepted": false
+}

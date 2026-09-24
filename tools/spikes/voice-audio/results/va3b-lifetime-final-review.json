@@ -1,0 +1,877 @@
+{
+  "acceptedAt": "2026-09-10T22:17:47.988Z",
+  "disposition": "A2",
+  "scope": "Selected V1 memory/lifecycle gate only; VA3B production remains unfinished",
+  "report": {
+    "TASK": "VOICE_AUDIO_SETTINGS_01_VA3B_RNNOISE_MEMORY_LIFETIME_REMEDIATION",
+    "PREVIOUS_MEMORY_CLASS": "UNBOUNDED_OR_EXCESSIVE",
+    "PREVIOUS_PEAK_MIB": 144.25390625,
+    "PREVIOUS_EVIDENCE_PRESERVED": true,
+    "RNNOISE_MEMORY_CLASS_C_ACCEPTED": true,
+    "RNNOISE_ABANDONED": false,
+    "RNNOISE_DSP_CHANGED": false,
+    "RNNOISE_MODEL_CHANGED": false,
+    "RNNOISE_PACKAGE_CHANGED": false,
+    "ROOT_CAUSE_CLASS": "strongly_localized",
+    "ROOT_CAUSE_COMPONENT": "AudioContext/worklet-global recreation boundary; individual retained browser object not identified",
+    "V0_CURRENT_RECREATION_RESULT": "HISTORICAL_CLASS_C_NOT_REPEATED",
+    "V1_CONTEXT_MODULE_REUSE_RESULT": "PASS_A2",
+    "V2_RUNTIME_NODE_REUSE_RESULT": "not_required",
+    "V3_STATE_REINIT_RESULT": "not_required",
+    "SELECTED_RUNTIME_LIFETIME": "LAZY_ACCOUNT_AUDIO_CONTEXT_AND_REGISTRATION_AFTER_FIRST_AUTHORIZED_RNNOISE_USE; processor/Emscripten/WASM instance per active generation",
+    "SELECTED_SIGNAL_STATE_LIFETIME": "ACTIVE_CAPTURE_GENERATION; reset/zero/destroy before retirement",
+    "SELECTED_VARIANT": "V1",
+    "SELECTED_VARIANT_PRIVACY_RESET_PASS": true,
+    "SELECTED_VARIANT_MANDATORY_SILENCE_PASS": true,
+    "FINAL_NATIVE_CYCLE_COUNT": 100,
+    "FINAL_RNNOISE_CYCLE_COUNT": 100,
+    "FINAL_CYCLE_1_DELTA_MIB": 41.6328125,
+    "FINAL_CYCLE_10_DELTA_MIB": 53.4140625,
+    "FINAL_CYCLE_20_DELTA_MIB": 42.35546875,
+    "FINAL_CYCLE_40_DELTA_MIB": 50.1484375,
+    "FINAL_CYCLE_60_DELTA_MIB": 40.6875,
+    "FINAL_CYCLE_80_DELTA_MIB": 39.921875,
+    "FINAL_CYCLE_100_DELTA_MIB": 38.734375,
+    "RNNOISE_SPECIFIC_MONOTONIC_GROWTH": false,
+    "RNNOISE_MEMORY_PLATEAU_ESTABLISHED": true,
+    "RNNOISE_ADDITIONAL_WORKING_MEMORY_MAX_MIB": 76.8046875,
+    "RNNOISE_STABLE_ATTRIBUTABLE_PRIVATE_WS_MAX_MIB": 75.84765625,
+    "RNNOISE_RAW_PAIRED_PEAK_MIB": 76.4921875,
+    "RNNOISE_BASELINE_ADJUSTED_PEAK_MIB": 76.8046875,
+    "RNNOISE_STARTUP_ATTRIBUTABLE_PEAK_MIB": 41.9453125,
+    "RNNOISE_EXPECTED_LATE_CYCLE_PEAK_MEDIAN_MIB": 49.9296875,
+    "RNNOISE_EXPECTED_LATE_POST_STOP_MEDIAN_MIB": 45.455078125,
+    "OLD_RNNOISE_MEMORY_BUDGET_MIB": 64,
+    "RNNOISE_MEMORY_BUDGET_MIB": 128,
+    "RNNOISE_MEMORY_BUDGET_CHANGED": true,
+    "RNNOISE_MEMORY_BUDGET_PASS": true,
+    "RUNTIME_CREATE_TOTAL": 106,
+    "RUNTIME_DISPOSE_TOTAL": 106,
+    "WORKLET_MODULE_LOAD_TOTAL": 6,
+    "PROCESSOR_CREATE_TOTAL": 106,
+    "RNNOISE_STATE_CREATE_TOTAL": 106,
+    "RNNOISE_STATE_RESET_TOTAL": 424,
+    "RNNOISE_STATE_DESTROY_TOTAL": 106,
+    "ACCOUNT_BOUNDARY_SANITY": "PASS",
+    "NATIVE_CONTINUOUS_PROCESSED_SECONDS": 602.9413333333333,
+    "RNNOISE_CONTINUOUS_PROCESSED_SECONDS": 602.99,
+    "RNNOISE_WARM_CPU_P95_QUANTUM_PERCENT": 22.50000089406967,
+    "RNNOISE_WARM_CPU_MAX_MS": 2,
+    "RNNOISE_WARM_CPU_PASS": true,
+    "PRODUCTION_SOURCE_CHANGED_BEFORE_MEMORY_PASS": false,
+    "PACKAGING_EXECUTED_BEFORE_MEMORY_PASS": false,
+    "SCHEMA_CHANGED_BEFORE_MEMORY_PASS": false,
+    "TRANSPORT_IMPLEMENTED_BEFORE_MEMORY_PASS": false,
+    "VA3B_IMPLEMENTATION_COMPLETE": false,
+    "VA3_COMPLETE": false,
+    "COMMIT_SHA": "none",
+    "PUSH_EXECUTED": false,
+    "NEXT_ACTION": "continue_VA3B_production_packaging_then_RNNoise_suppression_CALL_transport_validation"
+  },
+  "priorFilesVerified": 137,
+  "productionDiffBeforeAcceptance": "",
+  "manifestSha256": "bee810a78eef5ec972dc9c7cd0c800fffe4f70e7b03803d0c7915aa0e0c81814",
+  "comparison": "Same phase/same cycle peaks; raw and pre-cycle-offset-adjusted attribution both retained. Primary private WS; private commit and whole-tree RSS diagnostic. No WASM/heap double counting.",
+  "plateauReview": "Final 61–80 and 81–100 distributions overlap in peak, stopped WS and commit. Peak medians 49.78515625→49.9296875; stopped medians 45.376953125→45.455078125; commit medians 63.25→63.7685546875 MiB. Peak and stopped maxima decline. No historical-scale progressive retention; observed bounded result, not a guarantee of browser GC.",
+  "exactCycles": [
+    {
+      "cycle": 1,
+      "peakDelta": 41.6328125,
+      "baselineAdjustedPeak": 41.9453125,
+      "postStopMedianDelta": 41.2421875,
+      "postStopMaxDelta": 41,
+      "baselineAdjustedPostStopMedian": 41.5546875,
+      "commitPostStopMedianDelta": 57.287109375,
+      "baselineAdjustedCommitPostStopMedian": 56.580078125,
+      "rendererPostStopMedianDelta": 41.33984375,
+      "rendererCommitPostStopMedianDelta": 56.228515625
+    },
+    {
+      "cycle": 10,
+      "peakDelta": 53.4140625,
+      "baselineAdjustedPeak": 53.7265625,
+      "postStopMedianDelta": 53.43359375,
+      "postStopMaxDelta": 53.4375,
+      "baselineAdjustedPostStopMedian": 53.74609375,
+      "commitPostStopMedianDelta": 67.72265625,
+      "baselineAdjustedCommitPostStopMedian": 67.015625,
+      "rendererPostStopMedianDelta": 53.431640625,
+      "rendererCommitPostStopMedianDelta": 67.552734375
+    },
+    {
+      "cycle": 20,
+      "peakDelta": 42.35546875,
+      "baselineAdjustedPeak": 42.66796875,
+      "postStopMedianDelta": 42.3515625,
+      "postStopMaxDelta": 42.35546875,
+      "baselineAdjustedPostStopMedian": 42.6640625,
+      "commitPostStopMedianDelta": 56.310546875,
+      "baselineAdjustedCommitPostStopMedian": 55.603515625,
+      "rendererPostStopMedianDelta": 42.443359375,
+      "rendererCommitPostStopMedianDelta": 56.251953125
+    },
+    {
+      "cycle": 40,
+      "peakDelta": 50.1484375,
+      "baselineAdjustedPeak": 50.4609375,
+      "postStopMedianDelta": 50.140625,
+      "postStopMaxDelta": 50.1484375,
+      "baselineAdjustedPostStopMedian": 50.453125,
+      "commitPostStopMedianDelta": 63.84375,
+      "baselineAdjustedCommitPostStopMedian": 63.13671875,
+      "rendererPostStopMedianDelta": 50.7109375,
+      "rendererCommitPostStopMedianDelta": 64.265625
+    },
+    {
+      "cycle": 60,
+      "peakDelta": 40.6875,
+      "baselineAdjustedPeak": 41,
+      "postStopMedianDelta": 40.666015625,
+      "postStopMaxDelta": 40.6875,
+      "baselineAdjustedPostStopMedian": 40.978515625,
+      "commitPostStopMedianDelta": 69.794921875,
+      "baselineAdjustedCommitPostStopMedian": 69.087890625,
+      "rendererPostStopMedianDelta": 41.251953125,
+      "rendererCommitPostStopMedianDelta": 70.232421875
+    },
+    {
+      "cycle": 80,
+      "peakDelta": 39.921875,
+      "baselineAdjustedPeak": 40.234375,
+      "postStopMedianDelta": 39.921875,
+      "postStopMaxDelta": 39.9296875,
+      "baselineAdjustedPostStopMedian": 40.234375,
+      "commitPostStopMedianDelta": 53.9453125,
+      "baselineAdjustedCommitPostStopMedian": 53.23828125,
+      "rendererPostStopMedianDelta": 40.484375,
+      "rendererCommitPostStopMedianDelta": 54.40625
+    },
+    {
+      "cycle": 100,
+      "peakDelta": 38.734375,
+      "baselineAdjustedPeak": 39.046875,
+      "postStopMedianDelta": 38.73828125,
+      "postStopMaxDelta": 38.734375,
+      "baselineAdjustedPostStopMedian": 39.05078125,
+      "commitPostStopMedianDelta": 52.73828125,
+      "baselineAdjustedCommitPostStopMedian": 52.03125,
+      "rendererPostStopMedianDelta": 39.30859375,
+      "rendererCommitPostStopMedianDelta": 53.1875
+    }
+  ],
+  "blocks": [
+    {
+      "from": 1,
+      "to": 20,
+      "peakDelta": {
+        "samples": 20,
+        "min": 41.6328125,
+        "median": 53.337890625,
+        "p95": 66.015625,
+        "max": 67.234375,
+        "mean": 52.2154296875
+      },
+      "postStopDelta": {
+        "samples": 20,
+        "min": 1.697265625,
+        "median": 51.3818359375,
+        "p95": 54.2265625,
+        "max": 65.99609375,
+        "mean": 40.7806640625
+      },
+      "commitDelta": {
+        "samples": 20,
+        "min": 0.6015625,
+        "median": 67.4443359375,
+        "p95": 81.814453125,
+        "max": 84.0078125,
+        "mean": 56.28037109375
+      },
+      "nativePeak": {
+        "samples": 20,
+        "min": 84.01171875,
+        "median": 85.51171875,
+        "p95": 87.2109375,
+        "max": 87.3203125,
+        "mean": 85.623046875
+      },
+      "rnnoisePeak": {
+        "samples": 20,
+        "min": 125.64453125,
+        "median": 138.8125,
+        "p95": 151.203125,
+        "max": 152.7265625,
+        "mean": 137.8384765625
+      },
+      "nativePostStop": {
+        "samples": 20,
+        "min": 83.74609375,
+        "median": 85.3857421875,
+        "p95": 87.13671875,
+        "max": 87.31640625,
+        "mean": 85.53095703125
+      },
+      "rnnoisePostStop": {
+        "samples": 20,
+        "min": 87.513671875,
+        "median": 136.3369140625,
+        "p95": 139.8203125,
+        "max": 151.15625,
+        "mean": 126.31162109375
+      },
+      "nativeCommit": {
+        "samples": 20,
+        "min": 127.728515625,
+        "median": 129.6162109375,
+        "p95": 131.673828125,
+        "max": 131.84765625,
+        "mean": 129.81083984375
+      },
+      "rnnoiseCommit": {
+        "samples": 20,
+        "min": 130.76171875,
+        "median": 197.21484375,
+        "p95": 211.220703125,
+        "max": 213.17578125,
+        "mean": 186.0912109375
+      }
+    },
+    {
+      "from": 21,
+      "to": 40,
+      "peakDelta": {
+        "samples": 20,
+        "min": 40.06640625,
+        "median": 50.83984375,
+        "p95": 54.296875,
+        "max": 54.85546875,
+        "mean": 49.3853515625
+      },
+      "postStopDelta": {
+        "samples": 20,
+        "min": 0.57421875,
+        "median": 46.6708984375,
+        "p95": 52.685546875,
+        "max": 52.99609375,
+        "mean": 36.12626953125
+      },
+      "commitDelta": {
+        "samples": 20,
+        "min": -0.5,
+        "median": 60.771484375,
+        "p95": 66.89453125,
+        "max": 67.13671875,
+        "mean": 48.6568359375
+      },
+      "nativePeak": {
+        "samples": 20,
+        "min": 87.51953125,
+        "median": 91.2578125,
+        "p95": 93.86328125,
+        "max": 94.1875,
+        "mean": 91.05
+      },
+      "rnnoisePeak": {
+        "samples": 20,
+        "min": 132.5,
+        "median": 142.333984375,
+        "p95": 144.57421875,
+        "max": 144.9296875,
+        "mean": 140.4353515625
+      },
+      "nativePostStop": {
+        "samples": 20,
+        "min": 87.486328125,
+        "median": 91.060546875,
+        "p95": 93.81640625,
+        "max": 94.18359375,
+        "mean": 90.88076171875
+      },
+      "rnnoisePostStop": {
+        "samples": 20,
+        "min": 90.203125,
+        "median": 136.9169921875,
+        "p95": 143.875,
+        "max": 144.32421875,
+        "mean": 127.00703125
+      },
+      "nativeCommit": {
+        "samples": 20,
+        "min": 132.021484375,
+        "median": 135.595703125,
+        "p95": 138.462890625,
+        "max": 138.71484375,
+        "mean": 135.465625
+      },
+      "rnnoiseCommit": {
+        "samples": 20,
+        "min": 133.765625,
+        "median": 195.525390625,
+        "p95": 202.55859375,
+        "max": 202.66796875,
+        "mean": 184.1224609375
+      }
+    },
+    {
+      "from": 41,
+      "to": 60,
+      "peakDelta": {
+        "samples": 20,
+        "min": 39.578125,
+        "median": 50.13671875,
+        "p95": 73.6328125,
+        "max": 76.40625,
+        "mean": 51.9287109375
+      },
+      "postStopDelta": {
+        "samples": 20,
+        "min": -0.521484375,
+        "median": 40.771484375,
+        "p95": 51.986328125,
+        "max": 73.58203125,
+        "mean": 33.142578125
+      },
+      "commitDelta": {
+        "samples": 20,
+        "min": -1.3671875,
+        "median": 56.1689453125,
+        "p95": 69.794921875,
+        "max": 88.265625,
+        "mean": 46.83896484375
+      },
+      "nativePeak": {
+        "samples": 20,
+        "min": 94.51171875,
+        "median": 98.470703125,
+        "p95": 100.90234375,
+        "max": 101.42578125,
+        "mean": 98.2087890625
+      },
+      "rnnoisePeak": {
+        "samples": 20,
+        "min": 134.4609375,
+        "median": 149.4765625,
+        "p95": 171.078125,
+        "max": 172.75,
+        "mean": 150.1375
+      },
+      "nativePostStop": {
+        "samples": 20,
+        "min": 94.501953125,
+        "median": 98.1123046875,
+        "p95": 100.89453125,
+        "max": 101.37109375,
+        "mean": 98.0341796875
+      },
+      "rnnoisePostStop": {
+        "samples": 20,
+        "min": 96.357421875,
+        "median": 138.5615234375,
+        "p95": 149.923828125,
+        "max": 169.03515625,
+        "mean": 131.1767578125
+      },
+      "nativeCommit": {
+        "samples": 20,
+        "min": 139.107421875,
+        "median": 142.822265625,
+        "p95": 145.52734375,
+        "max": 146.1484375,
+        "mean": 142.68427734375
+      },
+      "rnnoiseCommit": {
+        "samples": 20,
+        "min": 140.22265625,
+        "median": 197.91015625,
+        "p95": 215.943359375,
+        "max": 228.15234375,
+        "mean": 189.5232421875
+      }
+    },
+    {
+      "from": 61,
+      "to": 80,
+      "peakDelta": {
+        "samples": 20,
+        "min": 39.10546875,
+        "median": 49.78515625,
+        "p95": 52.75390625,
+        "max": 53.140625,
+        "mean": 48.1154296875
+      },
+      "postStopDelta": {
+        "samples": 20,
+        "min": 1.970703125,
+        "median": 45.376953125,
+        "p95": 51.78125,
+        "max": 52.345703125,
+        "mean": 35.33193359375
+      },
+      "commitDelta": {
+        "samples": 20,
+        "min": 16.0234375,
+        "median": 63.25,
+        "p95": 66.650390625,
+        "max": 70.93359375,
+        "mean": 50.2822265625
+      },
+      "nativePeak": {
+        "samples": 20,
+        "min": 101.72265625,
+        "median": 104.01171875,
+        "p95": 104.71875,
+        "max": 104.79296875,
+        "mean": 103.76015625
+      },
+      "rnnoisePeak": {
+        "samples": 20,
+        "min": 141.9453125,
+        "median": 153.01953125,
+        "p95": 156.9765625,
+        "max": 157.546875,
+        "mean": 151.8755859375
+      },
+      "nativePostStop": {
+        "samples": 20,
+        "min": 101.6953125,
+        "median": 103.73046875,
+        "p95": 104.66796875,
+        "max": 104.69140625,
+        "mean": 103.64990234375
+      },
+      "rnnoisePostStop": {
+        "samples": 20,
+        "min": 104.4296875,
+        "median": 148.3310546875,
+        "p95": 156.12109375,
+        "max": 156.28515625,
+        "mean": 138.9818359375
+      },
+      "nativeCommit": {
+        "samples": 20,
+        "min": 146.587890625,
+        "median": 148.8662109375,
+        "p95": 149.86328125,
+        "max": 149.87109375,
+        "mean": 148.8052734375
+      },
+      "rnnoiseCommit": {
+        "samples": 20,
+        "min": 163.73046875,
+        "median": 210.7119140625,
+        "p95": 215.77734375,
+        "max": 219.708984375,
+        "mean": 199.0875
+      }
+    },
+    {
+      "from": 81,
+      "to": 100,
+      "peakDelta": {
+        "samples": 20,
+        "min": 38.734375,
+        "median": 49.9296875,
+        "p95": 51.5234375,
+        "max": 51.609375,
+        "mean": 47.8525390625
+      },
+      "postStopDelta": {
+        "samples": 20,
+        "min": 1.62109375,
+        "median": 45.455078125,
+        "p95": 50.28515625,
+        "max": 50.359375,
+        "mean": 35.05859375
+      },
+      "commitDelta": {
+        "samples": 20,
+        "min": 15.171875,
+        "median": 63.7685546875,
+        "p95": 69.40234375,
+        "max": 69.72265625,
+        "mean": 50.43818359375
+      },
+      "nativePeak": {
+        "samples": 20,
+        "min": 104.7578125,
+        "median": 105.978515625,
+        "p95": 107.8828125,
+        "max": 108.19921875,
+        "mean": 106.1861328125
+      },
+      "rnnoisePeak": {
+        "samples": 20,
+        "min": 145.94140625,
+        "median": 156.095703125,
+        "p95": 157.796875,
+        "max": 158.76171875,
+        "mean": 154.038671875
+      },
+      "nativePostStop": {
+        "samples": 20,
+        "min": 104.73828125,
+        "median": 105.966796875,
+        "p95": 107.8515625,
+        "max": 108.19140625,
+        "mean": 106.15703125
+      },
+      "rnnoisePostStop": {
+        "samples": 20,
+        "min": 107.4765625,
+        "median": 151.2744140625,
+        "p95": 156.9921875,
+        "max": 157.234375,
+        "mean": 141.215625
+      },
+      "nativeCommit": {
+        "samples": 20,
+        "min": 149.927734375,
+        "median": 151.060546875,
+        "p95": 153.03125,
+        "max": 153.375,
+        "mean": 151.30458984375
+      },
+      "rnnoiseCommit": {
+        "samples": 20,
+        "min": 166.16796875,
+        "median": 214.455078125,
+        "p95": 220.1015625,
+        "max": 221.81640625,
+        "mean": 201.7427734375
+      }
+    }
+  ],
+  "continuousPhases": [
+    {
+      "phase": "LONG_0",
+      "peakDeltaMiB": 40.30859375,
+      "adjustedPeakDeltaMiB": 40.62109375,
+      "medianDeltaMiB": 2.09765625,
+      "commitMedianDeltaMiB": 16.55078125
+    },
+    {
+      "phase": "LONG_1",
+      "peakDeltaMiB": 1.24609375,
+      "adjustedPeakDeltaMiB": 1.55859375,
+      "medianDeltaMiB": 1.6484375,
+      "commitMedianDeltaMiB": 16.02734375
+    },
+    {
+      "phase": "LONG_2",
+      "peakDeltaMiB": 1.984375,
+      "adjustedPeakDeltaMiB": 2.296875,
+      "medianDeltaMiB": 0.67578125,
+      "commitMedianDeltaMiB": 15.541015625
+    },
+    {
+      "phase": "LONG_3",
+      "peakDeltaMiB": -0.03125,
+      "adjustedPeakDeltaMiB": 0.28125,
+      "medianDeltaMiB": 0.158203125,
+      "commitMedianDeltaMiB": 14.76171875
+    },
+    {
+      "phase": "LONG_4",
+      "peakDeltaMiB": -0.5625,
+      "adjustedPeakDeltaMiB": -0.25,
+      "medianDeltaMiB": -0.353515625,
+      "commitMedianDeltaMiB": 14.375
+    },
+    {
+      "phase": "LONG_5",
+      "peakDeltaMiB": -0.359375,
+      "adjustedPeakDeltaMiB": -0.046875,
+      "medianDeltaMiB": 0,
+      "commitMedianDeltaMiB": 14.50390625
+    },
+    {
+      "phase": "LONG_6",
+      "peakDeltaMiB": 2.703125,
+      "adjustedPeakDeltaMiB": 3.015625,
+      "medianDeltaMiB": 2.89453125,
+      "commitMedianDeltaMiB": 17.5234375
+    },
+    {
+      "phase": "LONG_7",
+      "peakDeltaMiB": 2.98828125,
+      "adjustedPeakDeltaMiB": 3.30078125,
+      "medianDeltaMiB": 2.74609375,
+      "commitMedianDeltaMiB": 17.400390625
+    },
+    {
+      "phase": "LONG_8",
+      "peakDeltaMiB": 2.7734375,
+      "adjustedPeakDeltaMiB": 3.0859375,
+      "medianDeltaMiB": 2.46484375,
+      "commitMedianDeltaMiB": 16.91796875
+    },
+    {
+      "phase": "LONG_9",
+      "peakDeltaMiB": 2.4765625,
+      "adjustedPeakDeltaMiB": 2.7890625,
+      "medianDeltaMiB": 2.38671875,
+      "commitMedianDeltaMiB": 16.921875
+    }
+  ],
+  "accountPhases": [
+    {
+      "phase": "ACCOUNT_1",
+      "peakDeltaMiB": 42.74609375,
+      "adjustedPeakDeltaMiB": 43.05859375,
+      "medianDeltaMiB": 41.26953125,
+      "commitMedianDeltaMiB": 55.0859375
+    },
+    {
+      "phase": "ACCOUNT_2",
+      "peakDeltaMiB": 44.40234375,
+      "adjustedPeakDeltaMiB": 44.71484375,
+      "medianDeltaMiB": 44.220703125,
+      "commitMedianDeltaMiB": 58.72265625
+    },
+    {
+      "phase": "ACCOUNT_3",
+      "peakDeltaMiB": 47.453125,
+      "adjustedPeakDeltaMiB": 47.765625,
+      "medianDeltaMiB": 47.19921875,
+      "commitMedianDeltaMiB": 61.69140625
+    },
+    {
+      "phase": "ACCOUNT_4",
+      "peakDeltaMiB": 45.62890625,
+      "adjustedPeakDeltaMiB": 45.94140625,
+      "medianDeltaMiB": 45.6640625,
+      "commitMedianDeltaMiB": 59.833984375
+    },
+    {
+      "phase": "ACCOUNT_5",
+      "peakDeltaMiB": 47.04296875,
+      "adjustedPeakDeltaMiB": 47.35546875,
+      "medianDeltaMiB": 47.1015625,
+      "commitMedianDeltaMiB": 60.822265625
+    },
+    {
+      "phase": "ACCOUNT_POST",
+      "peakDeltaMiB": 41.21484375,
+      "adjustedPeakDeltaMiB": 41.52734375,
+      "medianDeltaMiB": 40.48046875,
+      "commitMedianDeltaMiB": 39.66015625
+    }
+  ],
+  "accountReview": "Five full account runtimes: adjusted peaks 43.05859375,44.71484375,47.765625,45.94140625,47.35546875 MiB; final post-account median 40.48046875 MiB raw. Logical cleanup passes, residual browser memory is not zero and long-term logout accumulation is not inferred from five generations.",
+  "counterScope": "RN totals include 100 cycles + one continuous + five account generations. Window CPU surrogate has separate 2 create/destroy states, excluded from memory windows. Main counters additionally include the common Native fixture. Runtime dispose means owned references dropped, not proven browser reclamation.",
+  "rnnoiseCounters": {
+    "MODULE_EVALUATIONS": 6,
+    "PROCESSOR_CREATE_TOTAL": 106,
+    "PROCESSOR_REUSE_TOTAL": 0,
+    "RUNTIME_CREATE_TOTAL": 106,
+    "RUNTIME_DISPOSE_TOTAL": 106,
+    "STATE_CREATE_TOTAL": 106,
+    "STATE_RESET_TOTAL": 424,
+    "STATE_DESTROY_TOTAL": 106,
+    "SCRATCH_ALLOC_TOTAL": 106,
+    "SCRATCH_FREE_TOTAL": 106,
+    "PORT_CREATE_TOTAL": 106,
+    "PORT_CLOSE_TOTAL": 106
+  },
+  "mainCounters": {
+    "AUDIO_CONTEXT_CREATE_TOTAL": 7,
+    "AUDIO_CONTEXT_CLOSE_TOTAL": 7,
+    "WORKLET_ADD_MODULE_TOTAL": 7,
+    "WORKLET_NODE_CREATE_TOTAL": 107,
+    "PORT_CREATE_TOTAL": 107,
+    "PORT_CLOSE_TOTAL": 107,
+    "SOURCE_CREATE_TOTAL": 213,
+    "SOURCE_STOP_TOTAL": 213,
+    "DESTINATION_CREATE_TOTAL": 213,
+    "DESTINATION_STOP_TOTAL": 213
+  },
+  "maximumOwners": {
+    "contexts": 2,
+    "nodes": 2,
+    "ports": 2,
+    "listeners": 4,
+    "tracks": 1,
+    "sources": 1,
+    "destinations": 1,
+    "pending": 0,
+    "activeGenerations": 1,
+    "rnnoiseStates": 1
+  },
+  "frameClockReview": {
+    "native": {
+      "required": true,
+      "meaning": "currentFrame discontinuity counter; not direct CPU timing or automatically a DSP FIFO failure",
+      "cycles": [
+        {
+          "cycle": 9,
+          "atReady": 0,
+          "atOpen": 2,
+          "atEnd": 2
+        },
+        {
+          "cycle": 68,
+          "atReady": 0,
+          "atOpen": 0,
+          "atEnd": 4
+        }
+      ],
+      "continuous": {
+        "first": 0,
+        "last": 4
+      }
+    },
+    "rnnoise": {
+      "required": true,
+      "meaning": "currentFrame discontinuity counter; not direct CPU timing or automatically a DSP FIFO failure",
+      "cycles": [
+        {
+          "cycle": 79,
+          "atReady": 0,
+          "atOpen": 0,
+          "atEnd": 4
+        }
+      ],
+      "continuous": {
+        "first": 0,
+        "last": 0
+      }
+    },
+    "conclusion": "Native has cycle 9/68 and continuous clock discontinuities; RN has cycle 79 only and zero continuous discontinuities. No RN-specific regression established. These counters are not direct callback duration or automatically lost audio. DSP/FIFO/mandatory-zero checks pass and >600 actual seconds processed in each mode."
+  },
+  "cpu": {
+    "origin": "window.performance.now selected lifetime DSP surrogate; not direct AudioWorklet callback timing",
+    "variant": "V1",
+    "quantumFrames": 128,
+    "quantumMs": 2.6666666666666665,
+    "directCallbackCPU": "not_available",
+    "secondsPerActivation": 15,
+    "prewarmFramesPerActivation": 20,
+    "runs": [
+      {
+        "condition": "first-activation",
+        "all": {
+          "samples": 5625,
+          "p50": 0,
+          "p95": 0.5999999046325684,
+          "max": 2.5
+        },
+        "rnnoiseHeavy": {
+          "samples": 1500,
+          "p50": 0.5,
+          "p95": 0.6000000238418579,
+          "max": 2.5
+        },
+        "fifo": {
+          "samples": 4125,
+          "p50": 0,
+          "p95": 0.09999990463256836,
+          "max": 0.5
+        }
+      },
+      {
+        "condition": "warm-activation",
+        "all": {
+          "samples": 5625,
+          "p50": 0,
+          "p95": 0.5,
+          "max": 2
+        },
+        "rnnoiseHeavy": {
+          "samples": 1500,
+          "p50": 0.5,
+          "p95": 0.6000000238418579,
+          "max": 2
+        },
+        "fifo": {
+          "samples": 4125,
+          "p50": 0,
+          "p95": 0,
+          "max": 0.2999999523162842
+        }
+      }
+    ],
+    "clockPairOverhead": {
+      "samples": 2000,
+      "p50": 0,
+      "p95": 0,
+      "max": 0.10000002384185791
+    },
+    "overheadSubtracted": false,
+    "outliersRemoved": false,
+    "warmP95Ms": 0.6000000238418579,
+    "warmP95QuantumPercent": 22.50000089406967,
+    "warmMaxMs": 2,
+    "pass": true,
+    "counters": {
+      "STATE_CREATE_TOTAL": 2,
+      "STATE_RESET_TOTAL": 6,
+      "STATE_DESTROY_TOTAL": 2,
+      "SCRATCH_ALLOC_TOTAL": 2,
+      "SCRATCH_FREE_TOTAL": 2
+    },
+    "memoryScope": "Executed after all memory/account observations; its Window WASM allocation is excluded from memory acceptance."
+  },
+  "environment": {
+    "native": {
+      "cpu": {
+        "samples": 4122,
+        "min": 7.443365695792881,
+        "median": 33.12500000000001,
+        "p95": 46.25,
+        "max": 69.375,
+        "mean": 33.93110831759808
+      },
+      "availableMiB": {
+        "samples": 4122,
+        "min": 10218.5859375,
+        "median": 11712.265625,
+        "p95": 12299.421875,
+        "max": 12377.94140625,
+        "mean": 11706.850999590612
+      },
+      "commitMiB": {
+        "samples": 4122,
+        "min": 36826.9453125,
+        "median": 37847.234375,
+        "p95": 38513.0625,
+        "max": 38770.4296875,
+        "mean": 37858.186435779055
+      },
+      "pressure": "not_available"
+    },
+    "rnnoise": {
+      "cpu": {
+        "samples": 4123,
+        "min": 10.410094637223978,
+        "median": 32.8125,
+        "p95": 44.375,
+        "max": 78.27380952380952,
+        "mean": 33.685057245092274
+      },
+      "availableMiB": {
+        "samples": 4123,
+        "min": 11226.40234375,
+        "median": 11986.80078125,
+        "p95": 12297.99609375,
+        "max": 12435.1796875,
+        "mean": 11976.208102792263
+      },
+      "commitMiB": {
+        "samples": 4123,
+        "min": 36948.9140625,
+        "median": 37949.74609375,
+        "p95": 38487.953125,
+        "max": 38965.3046875,
+        "mean": 37931.31974309514
+      },
+      "pressure": "not_available"
+    },
+    "pressure": "not_available",
+    "scope": "Aggregate host scalars only; prior explicit idle confirmation retained, no personal process inventory."
+  },
+  "limitations": [
+    "Private WS depends on natural browser/OS residency; no forced GC or trimming used.",
+    "Direct AudioWorklet callback CPU timing unavailable; Window surrogate is explicitly labeled.",
+    "Physical microphone, peer transport and owner listening were not part of the synthetic memory gate."
+  ]
+}

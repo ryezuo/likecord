@@ -1,0 +1,192 @@
+# Likecord staging for Hostinger Docker Manager -> Projects -> Compose manually.
+# This file intentionally uses prebuilt images only; it never builds the working tree on the VPS.
+
+services:
+  caddy:
+    image: caddy:2-alpine
+    ports:
+      - "80:80/tcp"
+      - "443:443/tcp"
+    environment:
+      # Kept inside this Compose document so the Hostinger manual-Compose workflow
+      # does not depend on a Caddyfile being present on the VPS filesystem.
+      CADDYFILE: |
+        ${LIKECORD_STAGING_DOMAIN:?LIKECORD_STAGING_DOMAIN is required} {
+            @ws {
+                path /api/v1/ws*
+            }
+            reverse_proxy @ws api:3001
+            reverse_proxy /api/v1/* api:3001
+            reverse_proxy /* web:3000
+        }
+    entrypoint: ["/bin/sh", "-ec"]
+    command:
+      - |
+        printf '%s\n' "$$CADDYFILE" > /etc/caddy/Caddyfile
+        exec caddy run --config /etc/caddy/Caddyfile --adapter caddyfile
+    volumes:
+      - likecord_staging_caddy_data:/data
+      - likecord_staging_caddy_config:/config
+    networks:
+      - edge_net
+      - app_net
+    restart: unless-stopped
+    depends_on:
+      web:
+        condition: service_healthy
+      api:
+        condition: service_healthy
+
+  web:
+    image: ghcr.io/${GHCR_OWNER:?GHCR_OWNER is required}/likecord-web:${STAGING_TAG:?STAGING_TAG is required}
+    networks:
+      - app_net
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/').then((r) => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    depends_on:
+      api:
+        condition: service_healthy
+
+  api:
+    image: ghcr.io/${GHCR_OWNER:?GHCR_OWNER is required}/likecord-api:${STAGING_TAG:?STAGING_TAG is required}
+    environment:
+      NODE_ENV: production
+      API_PORT: "3001"
+      DATABASE_URL: postgresql://likecord_staging:${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}@postgres:5432/likecord_staging
+      REDIS_URL: redis://redis:6379
+      APP_ORIGIN: https://${LIKECORD_STAGING_DOMAIN:?LIKECORD_STAGING_DOMAIN is required}
+      CORS_ORIGIN: https://${LIKECORD_STAGING_DOMAIN:?LIKECORD_STAGING_DOMAIN is required}
+      JWT_ACCESS_SECRET: ${JWT_ACCESS_SECRET:?JWT_ACCESS_SECRET is required}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:?JWT_REFRESH_SECRET is required}
+      LINK_PREVIEW_CACHE_HMAC_SECRET: ${LINK_PREVIEW_CACHE_HMAC_SECRET:?LINK_PREVIEW_CACHE_HMAC_SECRET is required}
+      TURN_SECRET: ${TURN_SECRET:?TURN_SECRET is required}
+      TURN_HOST: ${LIKECORD_STAGING_DOMAIN:?LIKECORD_STAGING_DOMAIN is required}
+      UPLOAD_DIR: /app/uploads
+      STORAGE_DRIVER: ${STORAGE_DRIVER:-local}
+      R2_ACCOUNT_ID: ${R2_ACCOUNT_ID:-}
+      R2_ACCESS_KEY_ID: ${R2_ACCESS_KEY_ID:-}
+      R2_SECRET_ACCESS_KEY: ${R2_SECRET_ACCESS_KEY:-}
+      R2_BUCKET: ${R2_BUCKET:-likecord-staging-media}
+      R2_ENDPOINT: ${R2_ENDPOINT:-}
+      R2_PRESIGNED_UPLOAD_TTL: ${R2_PRESIGNED_UPLOAD_TTL:-300}
+      R2_PRESIGNED_DOWNLOAD_TTL: ${R2_PRESIGNED_DOWNLOAD_TTL:-600}
+    volumes:
+      - likecord_staging_uploads:/app/uploads
+    networks:
+      - app_net
+      - data_net
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3001/api/v1/health').then((r) => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: likecord_staging
+      POSTGRES_USER: likecord_staging
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
+    volumes:
+      - likecord_staging_postgres:/var/lib/postgresql/data
+    networks:
+      - data_net
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U likecord_staging -d likecord_staging"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    networks:
+      - data_net
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  coturn:
+    image: coturn/coturn:4.17.2-r0
+    # Mirrors the repository's TURN settings without a VPS-side config-file mount.
+    # The relay interval is the existing Compose interval, made explicit for coturn.
+    entrypoint: ["/bin/sh", "-ec"]
+    command:
+      - |
+        umask 077
+        secret_file=/run/secrets/turn_secret
+        runtime_dir=/tmp/coturn-runtime
+        runtime_config=$$runtime_dir/turnserver.conf
+        if [ ! -s "$$secret_file" ]; then
+          echo "TURN secret file is missing or empty" >&2
+          exit 1
+        fi
+        mkdir -p "$$runtime_dir"
+        printf 'static-auth-secret=' > "$$runtime_config"
+        cat "$$secret_file" >> "$$runtime_config"
+        printf '\n' >> "$$runtime_config"
+        chmod 600 "$$runtime_config"
+        exec /usr/local/bin/docker-entrypoint.sh -c "$$runtime_config" \
+          --log-file=stdout \
+          --listening-port=3478 \
+          --tls-listening-port=5349 \
+          --fingerprint \
+          --use-auth-secret \
+          --realm=${LIKECORD_STAGING_DOMAIN:?LIKECORD_STAGING_DOMAIN is required} \
+          --external-ip=${TURN_EXTERNAL_IP:?TURN_EXTERNAL_IP is required} \
+          --total-quota=100 \
+          --bps-capacity=0 \
+          --stale-nonce=600 \
+          --no-multicast-peers \
+          --min-port=49152 \
+          --max-port=49200
+    secrets:
+      - turn_secret
+    ports:
+      - "3478:3478/tcp"
+      - "3478:3478/udp"
+      - "5349:5349/tcp"
+      - "49152-49200:49152-49200/udp"
+    networks:
+      - turn_net
+    restart: unless-stopped
+
+networks:
+  edge_net:
+    driver: bridge
+  app_net:
+    driver: bridge
+  data_net:
+    driver: bridge
+    internal: true
+  turn_net:
+    driver: bridge
+
+secrets:
+  turn_secret:
+    environment: TURN_SECRET
+
+volumes:
+  likecord_staging_postgres:
+    name: likecord_staging_postgres
+  likecord_staging_uploads:
+    name: likecord_staging_uploads
+  likecord_staging_caddy_data:
+    name: likecord_staging_caddy_data
+  likecord_staging_caddy_config:
+    name: likecord_staging_caddy_config

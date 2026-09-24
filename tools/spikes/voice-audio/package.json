@@ -1,0 +1,23 @@
+{
+  "name": "likecord-voice-audio-feasibility-spike",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "acquire": "node scripts/acquire.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "node --test test/*.test.mjs",
+    "start": "node scripts/serve.mjs",
+    "stop": "node scripts/stop.mjs",
+    "package:rnnoise": "node adoption/package-rnnoise.mjs",
+    "build:lifetime": "node adoption/build-lifetime-memory.mjs",
+    "test:lifetime": "node adoption/check-lifetime-signal.mjs",
+    "check:memory": "pwsh -NoProfile -File adoption/measure-lifetime-memory-final.ps1 -CheckOnly",
+    "measure:lifetime": "pwsh -NoProfile -File adoption/measure-lifetime-memory-final.ps1",
+    "analyze:lifetime": "node adoption/analyze-lifetime-memory.mjs"
+  },
+  "devDependencies": {
+    "@jitsi/rnnoise-wasm": "0.2.1",
+    "esbuild": "0.28.1"
+  }
+}

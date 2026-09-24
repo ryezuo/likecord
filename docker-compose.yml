@@ -1,0 +1,164 @@
+services:
+  caddy:
+    image: caddy:2-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+    networks:
+      - edge_net
+      - app_net
+    restart: unless-stopped
+    depends_on:
+      - web
+      - api
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    ports:
+      - "3000"
+    environment:
+      NODE_ENV: development
+    networks:
+      - app_net
+    restart: unless-stopped
+    depends_on:
+      - api
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    ports:
+      - "3001"
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: development
+      # Storage driver: local (default) | r2 — supplied via --env-file external-media.env
+      STORAGE_DRIVER: ${STORAGE_DRIVER:-local}
+      R2_ACCOUNT_ID: ${R2_ACCOUNT_ID:-}
+      R2_ACCESS_KEY_ID: ${R2_ACCESS_KEY_ID:-}
+      R2_SECRET_ACCESS_KEY: ${R2_SECRET_ACCESS_KEY:-}
+      R2_ENDPOINT: ${R2_ENDPOINT:-}
+      R2_BUCKET: ${R2_BUCKET:-}
+      R2_PRESIGNED_UPLOAD_TTL: ${R2_PRESIGNED_UPLOAD_TTL:-300}
+      R2_PRESIGNED_DOWNLOAD_TTL: ${R2_PRESIGNED_DOWNLOAD_TTL:-600}
+    networks:
+      - app_net
+      - data_net
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:15-alpine
+    ports:
+      - "127.0.0.1:5432:5432"
+    environment:
+      POSTGRES_DB: likecord
+      POSTGRES_USER: likecord
+      POSTGRES_PASSWORD: likecord_password
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks:
+      - data_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U likecord"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "127.0.0.1:6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - data_net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  coturn:
+    image: coturn/coturn:4.17.2-r0
+    entrypoint: ["/bin/sh", "-ec"]
+    command:
+      - |
+        umask 077
+        secret_file=/run/secrets/turn_secret
+        runtime_dir=/tmp/coturn-runtime
+        runtime_config=$$runtime_dir/turnserver.conf
+        if [ ! -s "$$secret_file" ]; then
+          echo "TURN secret file is missing or empty" >&2
+          exit 1
+        fi
+        mkdir -p "$$runtime_dir"
+        cp /etc/coturn/turnserver.conf.template "$$runtime_config"
+        printf '\nstatic-auth-secret=' >> "$$runtime_config"
+        cat "$$secret_file" >> "$$runtime_config"
+        printf '\n' >> "$$runtime_config"
+        chmod 600 "$$runtime_config"
+        exec /usr/local/bin/docker-entrypoint.sh -c "$$runtime_config" --log-file=stdout '--external-ip=$$(detect-external-ip)'
+    ports:
+      - "3478:3478/tcp"
+      - "3478:3478/udp"
+      - "49152-49200:49152-49200/udp"
+    volumes:
+      - ./apps/turn/turnserver.conf:/etc/coturn/turnserver.conf.template:ro
+    secrets:
+      - turn_secret
+    networks:
+      - turn_net
+    restart: unless-stopped
+
+  backup:
+    image: postgres:15-alpine
+    entrypoint: ["/bin/sh", "-c"]
+    command: ["crond -f"]
+    volumes:
+      - ./docker/backup/script.sh:/etc/backup/script.sh:ro
+      - ./docker/backup/crontab:/etc/crontabs/root:ro
+      - ./backups:/backups
+    environment:
+      PGHOST: postgres
+      PGUSER: likecord
+      PGPASSWORD: likecord_password
+    networks:
+      - data_net
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+networks:
+  edge_net:
+    driver: bridge
+  app_net:
+    driver: bridge
+  data_net:
+    driver: bridge
+    internal: false
+  turn_net:
+    driver: bridge
+
+secrets:
+  turn_secret:
+    environment: TURN_SECRET
+
+volumes:
+  pg_data:
+  redis_data:
+  caddy_data:

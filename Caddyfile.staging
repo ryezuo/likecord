@@ -1,0 +1,17 @@
+# Fallback/reference Caddyfile for a VPS-side file workflow.
+# Set LIKECORD_STAGING_DOMAIN in the Caddy container environment before Caddy starts.
+# A public hostname enables Caddy automatic public TLS.
+
+{$LIKECORD_STAGING_DOMAIN} {
+    # Socket.IO uses this exact path and requires HTTP upgrade support.
+    @ws {
+        path /api/v1/ws*
+    }
+    reverse_proxy @ws api:3001
+
+    # REST API, including /api/v1/health.
+    reverse_proxy /api/v1/* api:3001
+
+    # Next.js frontend.
+    reverse_proxy /* web:3000
+}
